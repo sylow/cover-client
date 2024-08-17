@@ -1,0 +1,14 @@
+<script setup>
+  const { isAuthenticated, email, signOut } = useAuth()
+</script>
+<template>
+  <div class="has-text-right" style="padding-right: 1em">
+    <div v-if="isAuthenticated">
+      Welcome {{ email }}
+      <NuxtLink @click="signOut">Sign out</NuxtLink>
+    </div>
+    <div v-else>
+      <NuxtLink @click="navigateTo('/users/sign_up')">Sign up</NuxtLink>
+    </div>
+  </div>
+</template>

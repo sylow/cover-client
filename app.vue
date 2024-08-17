@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button class="button">testin</button>
-    <NuxtRouteAnnouncer />
+    <SiteHeader />
+    <NuxtPage />
+    <UNotifications />
   </div>
 </template>
