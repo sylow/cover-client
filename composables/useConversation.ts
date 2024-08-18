@@ -2,6 +2,7 @@ import { type Message } from '~/types/auth'
 
 export function useConversation() {
   const toast = useToast()
+
   const execute = (message: Message) => {
     if (message == undefined) return
 

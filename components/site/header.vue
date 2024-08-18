@@ -11,6 +11,8 @@
   <div class="has-text-right" style="padding-right: 1em">
     <div v-if="isAuthenticated">
       Welcome {{ email }} <br/>
+      <NuxtLink @click="navigateTo('/')">Home</NuxtLink>
+      |
       <NuxtLink @click="navigateTo('/secure')">Secure Page</NuxtLink>
       |
       <NuxtLink @click="signOutAndNavigate">Sign out</NuxtLink>

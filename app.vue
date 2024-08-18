@@ -1,13 +1,15 @@
 <script setup>
   const auth = useAuth()
-  const cookieToken = useCookie('token')
+  // const cookieToken = useCookie('token')
 
-  onMounted( () => {
-    if (!auth.isAuthenticated.value) return
+  // onMounted( () => {
+  //   if (!auth.isAuthenticated.value) return
 
-    const conversation = useConversation()
-    useStream(conversation)
-  })
+  //   const conversation = useConversation()
+  //   useStream(conversation)
+  // })
+
+  useStream(auth)
 </script>
 
 <template>
