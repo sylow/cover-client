@@ -11,3 +11,8 @@ export interface AuthData {
   exp: string
   email: string
 }
+
+export interface Message {
+  type: string
+  content: string
+}

@@ -1,8 +1,11 @@
+import { type Message } from '~/types/auth'
+
 export function useConversation() {
-  const execute = (message: object) => {
+  const toast = useToast()
+  const execute = (message: Message) => {
     if (message == undefined) return
-    console.log('message')
-    console.log(message)
+
+    toast.add({title: 'New Message', description: message.content})
   }
   return { execute }
 }
