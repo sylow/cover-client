@@ -7,10 +7,10 @@
 </script>
 <template>
   <div class="has-text-right" style="padding-right: 1em">
-    <NuxtLink @click="navigateTo('/secure')">Secure Page</NuxtLink>
-      |
     <div v-if="isAuthenticated">
-      Welcome {{ email }}
+      Welcome {{ email }} <br/>
+      <NuxtLink @click="navigateTo('/secure')">Secure Page</NuxtLink>
+      |
       <NuxtLink @click="signOutAndNavigate">Sign out</NuxtLink>
     </div>
     <div v-else>
