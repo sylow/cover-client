@@ -23,7 +23,6 @@
 </script>
 <template>
   <div class="container is-small" style="margin-top:2em">
-    {{ form }}
     <div class="notification">
       <h1 class="title is-1">Sign In</h1>
       <form @submit.prevent="submit">

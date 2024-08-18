@@ -1,10 +1,10 @@
 <script setup>
-  const chatCallback = (message) => {
-    if (message?.message == undefined) return
-    console.log(message.message)
-  }
+  const auth = useAuth()
   onMounted( () => {
-    useStream(chatCallback)
+    if (!auth.isAuthenticated.value) return
+
+    const conversation = useConversation()
+    useStream(conversation)
   })
 </script>
 

@@ -1,24 +1,24 @@
 import { defu } from 'defu'
 
-export function useStream<T> (callback: Function) {
+export function useStream<T> (callback: composableFunction<T>) {
   const config = useRuntimeConfig()
+  const token = useAuth().token.value
 
-  const { status, data, send, open, close, ws } = useWebSocket(<string>config.public.baseWs, {
-    onConnected: (ws) =>{
+  const { send, ws } = useWebSocket(<string>`${config.public.baseWs}?token=${token}`, {
+    onConnected: (_) =>{
       const subscriptionMsg = {
         command: 'subscribe',
         identifier: JSON.stringify({
-          id: 1,
           channel: 'ConversationChannel'
         })
       }
       send(JSON.stringify(subscriptionMsg))
     },
-    onMessage: (ws, event) => {
+    onMessage: (_, event) => {
       const message = JSON.parse(event.data)
       if (message.type == 'ping')
         return;
-      callback(message)
+      callback.execute(message?.message)
     }
   })
 

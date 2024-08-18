@@ -8,6 +8,8 @@
       <NuxtLink @click="signOut">Sign out</NuxtLink>
     </div>
     <div v-else>
+      <NuxtLink @click="navigateTo('/sessions/sign_in')">Sign in</NuxtLink>
+      |
       <NuxtLink @click="navigateTo('/users/sign_up')">Sign up</NuxtLink>
     </div>
   </div>
