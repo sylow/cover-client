@@ -1,6 +1,7 @@
 <script setup type="ts">
   const toast = useToast()
   const auth = useAuth()
+  const cookieToken = useCookie('token')
 
   const form = reactive({email: '', password: ''})
   const submit = async() => {
@@ -12,6 +13,7 @@
       body: JSON.stringify(form),
     })
     if (status.value == 'success'){
+      cookieToken.value = data.value.token
       auth.signIn(data.value)
       toast.add({title: 'Success', description: 'You have successfully signed in', type: 'is-success'})
       navigateTo('/secure')

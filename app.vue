@@ -1,5 +1,7 @@
 <script setup>
   const auth = useAuth()
+  const cookieToken = useCookie('token')
+
   onMounted( () => {
     if (!auth.isAuthenticated.value) return
 
@@ -10,6 +12,7 @@
 
 <template>
   <div>
+    {{  auth }}
     <SiteHeader />
     <NuxtPage />
     <UNotifications />

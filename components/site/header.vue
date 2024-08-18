@@ -1,7 +1,9 @@
 <script setup>
   const { isAuthenticated, email, signOut } = useAuth()
+  const cookieToken = useCookie('token')
   const signOutAndNavigate = async() => {
     await signOut()
+    cookieToken.value = ''
     navigateTo('/')
   }
 </script>

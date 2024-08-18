@@ -6,5 +6,7 @@
 <template>
   <h1 class="title is-1">
     Secure Page
+    {{ useAuth().exp }}
+
   </h1>
 </template>
