@@ -6,6 +6,7 @@
   <div>
     <SiteHeader />
     <NuxtPage />
+    <SiteFooter />
     <UNotifications />
   </div>
 </template>
