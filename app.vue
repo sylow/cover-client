@@ -1,20 +1,9 @@
 <script setup>
-  const auth = useAuth()
-  // const cookieToken = useCookie('token')
-
-  // onMounted( () => {
-  //   if (!auth.isAuthenticated.value) return
-
-  //   const conversation = useConversation()
-  //   useStream(conversation)
-  // })
-
-  useStream(auth)
+  useStream(useAuth())
 </script>
 
 <template>
   <div>
-    {{  auth }}
     <SiteHeader />
     <NuxtPage />
     <UNotifications />

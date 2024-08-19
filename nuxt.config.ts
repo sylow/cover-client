@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // ssr: false,
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   modules: ['@vueuse/nuxt', '@nuxt/ui'],
@@ -12,6 +11,7 @@ export default defineNuxtConfig({
       privateKeyUrl: process.env.NUXT_PUBLIC_PRIVATE_KEY_URL
     }
   },
+  plugins: [],
   css: [
     '~/assets/scss/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
