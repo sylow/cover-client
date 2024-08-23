@@ -6,6 +6,14 @@ export function useStream<T> (callback: composableFunction<T>) {
   const toast = useToast()
   const closeMethod = ref<Function>()
 
+  onMounted(() => {
+    connect()
+  })
+
+  watch(token, () => {
+    connect()
+  })
+
   const eventReceived = (message: Message) => {
     if (message == undefined) return
 
