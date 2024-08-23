@@ -16,7 +16,7 @@
         <p>
           Our user-friendly cover letter generator transforms the challenge of writing into a simple, accessible experience. Enhance your interview prospects, distinguish yourself from the competition, and confidently apply for your dream job—let your professional journey shine through and captivate potential employers!
         </p>
-        <button class="button is-success is-light">Create Cover Letter</button>
+        <NuxtLink to="/covers/new" class="button is-success is-light">Create Cover Letter</NuxtLink>
       </section>
 
     </div>
