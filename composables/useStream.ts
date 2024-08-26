@@ -6,14 +6,6 @@ export function useStream<T> (callback: composableFunction<T>) {
   const toast = useToast()
   const closeMethod = ref<Function>()
 
-  onMounted(() => {
-    connect()
-  })
-
-  watch(token, () => {
-    connect()
-  })
-
   const eventReceived = (message: Message) => {
     if (message == undefined) return
 
@@ -21,7 +13,7 @@ export function useStream<T> (callback: composableFunction<T>) {
   }
 
   const connect = () => {
-    console.log('connect')
+    // if not authenticated, close the connection
     if (!isAuthenticated.value) {
       closeMethod.value?.()
       return
@@ -48,5 +40,8 @@ export function useStream<T> (callback: composableFunction<T>) {
     })
   }
 
-  return { connect }
+  watch( () => token,
+         () => { connect() },
+         { immediate: true })
+
 }

@@ -17,6 +17,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@nuxt/ui": "^2.18.4",
     "bulma": "^1.0.2",
+    "bulma-o-steps": "^1.1.0",
     "nuxt": "^3.12.4",
     "vue": "latest"
   },
