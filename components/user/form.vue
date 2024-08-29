@@ -1,12 +1,13 @@
 <script setup type="ts">
-  const props = defineProps(['form'])
+  const form = reactive({email: '', password: ''})
+  const emits = defineEmits(['submit'])
 </script>
 <template>
-  <div>
+  <form @submit.prevent="emits('submit', form)">
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left">
-        <input class="input" type="email" placeholder="hello@" v-model="props.form.email">
+        <input class="input" type="email" placeholder="hello@" v-model="form.email">
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
@@ -16,7 +17,7 @@
     <div class="field">
       <label class="label">Password</label>
       <div class="control has-icons-left">
-        <input class="input" type="password" v-model="props.form.password">
+        <input class="input" type="password" v-model="form.password">
         <span class="icon is-small is-left">
           <i class="fa fa-key"></i>
         </span>
@@ -27,6 +28,5 @@
         <button class="button"><slot></slot></button>
       </div>
     </div>
-
-  </div>
+  </form>
 </template>
