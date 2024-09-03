@@ -16,3 +16,10 @@ export interface Message {
   type: string
   content: string
 }
+
+export interface Resume {
+  id: number
+  title: string
+  content: string
+  created_at?: string
+}

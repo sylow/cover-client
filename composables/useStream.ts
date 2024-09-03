@@ -1,4 +1,4 @@
-import { type Message } from '~/types/auth'
+import { type Message } from '~/types/all'
 
 export function useStream<T> (callback: composableFunction<T>) {
   const config = useRuntimeConfig()

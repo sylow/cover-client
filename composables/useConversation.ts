@@ -1,4 +1,4 @@
-import { type Message } from '~/types/auth'
+import { type Message } from '~/types/all'
 
 export function useConversation() {
   const toast = useToast()

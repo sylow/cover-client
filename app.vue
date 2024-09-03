@@ -10,3 +10,9 @@
     <UNotifications />
   </div>
 </template>
+
+<style scoped lang="scss">
+  .container {
+    margin-top: 2em;
+  }
+</style>

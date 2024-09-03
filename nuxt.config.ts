@@ -16,4 +16,11 @@ export default defineNuxtConfig({
     '~/assets/scss/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
   ],
+  app: {
+    head: {
+      script: [
+        { src: '/scripts/menu.js', tagPosition: 'bodyClose' },
+      ]
+    }
+  }
 })
