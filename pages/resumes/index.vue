@@ -5,15 +5,9 @@
     middleware: 'auth',
   })
 
-  const resumes = ref<Resume[]>([])
-
-  onMounted(async () => {
-    const { data, status } = await useCustomFetch('/api/v1/resumes', { dedupe: 'defer'})
-    if (status.value === 'success') {
-      console.log(data.value)
-      resumes.value = data.value
-    }
-  })
+  const { resumes, error, loading, fetchResumes } =  useResumes()
+  fetchResumes()
+  // onMounted( () => fetchResumes() )
 
 </script>
 <template>

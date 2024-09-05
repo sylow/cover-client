@@ -23,3 +23,8 @@ export interface Resume {
   content: string
   created_at?: string
 }
+
+export interface Login {
+  email: string
+  password: string
+}

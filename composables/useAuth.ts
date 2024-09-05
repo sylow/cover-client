@@ -8,7 +8,11 @@ export function useAuth() {
     email: ''
   }
 
-  const authData = useState<AuthData>('authData', () => (defaultAuthData))
+  const authData = useCookie<AuthData>('authData',
+    {
+      default: () => (defaultAuthData)
+    }
+  )
 
   const signIn = (userData: UserData) => {
     authData.value = { token: userData.token, exp: userData.exp, email: userData.email }

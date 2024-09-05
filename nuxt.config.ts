@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2024-09-05',
   devtools: { enabled: true },
-  modules: ['@vueuse/nuxt', '@nuxt/ui'],
+  modules: ['@vueuse/nuxt', '@nuxt/ui', '@pinia/nuxt', '@pinia/nuxt'],
   runtimeConfig: {
     public: {
       environment: process.env.NUXT_PUBLIC_ENVIRONMENT,
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       privateKeyUrl: process.env.NUXT_PUBLIC_PRIVATE_KEY_URL
     }
   },
-  plugins: [],
+  plugins: ['~/plugins/api.ts'],
   css: [
     '~/assets/scss/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
