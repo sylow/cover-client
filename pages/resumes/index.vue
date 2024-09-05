@@ -5,10 +5,7 @@
     middleware: 'auth',
   })
 
-  const { resumes, error, loading, fetchResumes } =  useResumes()
-  fetchResumes()
-  // onMounted( () => fetchResumes() )
-
+  const { data: resumes } = useAsyncData<{ value: Resume[] }>('resumes', () => useResumes() )
 </script>
 <template>
   <div class="container">
@@ -31,7 +28,7 @@
           <p>
             <strong>{{ title }}</strong> <small>{{ created_at }}</small>
             <br />
-            <div class="max-lines">{{ content }}</div>
+            <span class="max-lines">{{ content }}</span>
           </p>
         </div>
         <nav class="level is-mobile">

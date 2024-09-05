@@ -1,11 +1,15 @@
-<script setup>
+<script setup lang="ts">
+  import type { Resume } from '~/types/all'
+
   definePageMeta({
-    middleware: 'auth',
+    middleware: 'auth'
   })
 
-  const form = reactive({resume: '', project: '', account: {email: '', password: ''}})
+  const form = reactive({resume: null, project: '', account: {email: '', password: ''}})
   const isValid = computed(() => form.project.length >= 200)
   const isProjectValid = computed(() => form.project.length >= 200)
+  const { data: resumes } = useAsyncData<{ value: Resume[] }>('resumes', () => useResumes() )
+
   const submit = () => {
     console.log('Form submitted', form)
   }
@@ -18,9 +22,8 @@
         <label class="label">Resume</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Select dropdown</option>
-              <option>With options</option>
+            <select v-model="form.resume">
+              <option v-for="{ id, title, created_at } in resumes" :key="id">{{ title }} ({{  created_at }})</option>
             </select>
           </div>
         </div>
