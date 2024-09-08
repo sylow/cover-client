@@ -5,13 +5,14 @@
     middleware: 'auth'
   })
 
-  const form = reactive({resume: null, project: '', account: {email: '', password: ''}})
-  const isValid = computed(() => form.project.length >= 200)
-  const isProjectValid = computed(() => form.project.length >= 200)
+  const api = useCoverApi()
+  const form = reactive({resume_id: null, project: ''})
+  const isValid = computed(() => form.project.length >= 0)
+  const isProjectValid = computed(() => form.project.length >= 0)
   const { data: resumes } = useAsyncData<{ value: Resume[] }>('resumes', () => useResumes() )
 
   const submit = () => {
-    console.log('Form submitted', form)
+    const { data, error, status } = api.create(form)
   }
 </script>
 
@@ -22,8 +23,8 @@
         <label class="label">Resume</label>
         <div class="control">
           <div class="select">
-            <select v-model="form.resume">
-              <option v-for="{ id, title, created_at } in resumes" :key="id">{{ title }} ({{  created_at }})</option>
+            <select v-model="form.resume_id">
+              <option v-for="{ id, title, created_at } in resumes" :key="id" :value="id">{{ title }} ({{  created_at }})</option>
             </select>
           </div>
         </div>

@@ -28,3 +28,9 @@ export interface Login {
   email: string
   password: string
 }
+
+export interface Cover {
+  cover: string
+  resume_id?: number
+  resume?: string
+}

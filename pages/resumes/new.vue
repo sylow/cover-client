@@ -2,13 +2,20 @@
   definePageMeta({
     middleware: 'auth',
   })
-  const api = useResumeUpdater()
+  const api = useResumeApi()
 
-  const form = reactive({title: '', content: ''})
-  const isResumeValid = computed(() => form.content.length >= 500)
-  const isTitleValid = computed(() => form.title.length >= 5)
-  const submit = () => {
-    const { data, error, status } = api.create(form) //useCustomFetch('/api/v1/resumes', { method: 'POST', body: form })
+  const form = reactive({title: '', resume: ''})
+  const isResumeValid = computed(() => form.resume.length >= 1)
+  const isTitleValid = computed(() => form.title.length >= 1)
+  const submit = async() => {
+    const { data, error, status } = await api.create(form)
+    useNotify().notifyWithStatus(status, {
+      success: 'Saved successfully',
+      error: error?.value?.data,
+    })
+    if (status.value == 'success') {
+      navigateTo('/resumes')
+    }
   }
 </script>
 
@@ -21,12 +28,12 @@
         <div class="control">
           <input class="input" v-model="form.title" />
         </div>
-        <div class='help' :class="{'is-danger': !isTitleValid, 'is-success': isResumeValid}">Your title should be a minimum of 5 characters.</div>
+        <div class='help' :class="{'is-danger': !isTitleValid, 'is-success': isTitleValid}">Your title should be a minimum of 5 characters.</div>
       </div>
       <div class="field">
         <label class="label">Your Resume</label>
         <div class="control">
-          <textarea class="textarea" v-model="form.content"></textarea>
+          <textarea class="textarea" v-model="form.resume"></textarea>
         </div>
         <div class='help' :class="{'is-danger': !isResumeValid, 'is-success': isResumeValid}">Your resume should be a minimum of 500 characters.</div>
       </div>

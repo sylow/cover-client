@@ -1,7 +1,14 @@
 <script setup type="ts">
   const session = useSession()
+  const toast = useToast()
+
   const submit = async(form) => {
-    session.signIn(form)
+    const { data, status, error } = await session.signIn(form)
+    if (data.value)
+      navigateTo('/')
+    else if (error.value){
+      toast.add({title: 'Opppsss', description: error.value.data.error, color: 'red'})
+    }
   }
 </script>
 
