@@ -1,7 +1,29 @@
-<script setup type="ts">
+<script setup lang="ts">
+  import type { Login } from '~/types/all'
+
   const session = useSession()
-  const submit = async(form) => {
-    session.signUp(form)
+  const toast = useToast()
+
+  const submit = async(form: Login) => {
+    try {
+      const { data, error } = await session.signUp(form)
+
+      if (error?.value) {
+        const errorMessage = error.value?.data?.error || 'An unexpected error occurred'
+        toast.add({ title: 'Sign Up Failed', description: errorMessage, color: 'red' })
+        return
+      }
+
+      if (data?.value) {
+        toast.add({ title: 'Success', description: 'Signed up successfully', color: 'green' })
+        navigateTo('/')
+      } else {
+        toast.add({ title: 'Error', description: 'No data received from server', color: 'red' })
+      }
+    } catch (e) {
+      console.error('Unexpected error during sign up:', e)
+      toast.add({ title: 'Error', description: 'An unexpected error occurred', color: 'red' })
+    }
   }
 </script>
 <template>
