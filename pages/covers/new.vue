@@ -5,11 +5,7 @@
     middleware: 'auth'
   })
   const { resumes, all } = useResumeStore()
-  onMounted(() => {
-    if (resumes.empty === 0) {
-      all()
-    }
-  })
+
 
   const toast = useToast()
   const api = useCoverApi()

@@ -4,7 +4,7 @@
     middleware: 'auth',
   })
 
-  const { resumes } = useResumeStore()
+  const store = useResumeStore()
 
 </script>
 <template>
@@ -23,7 +23,8 @@
       </div>
     </div>
     <div>
-      <table class="table">
+      <SiteLoading v-if="store.isLoading" />
+      <table class="table" v-if="!store.isLoading">
         <thead>
           <tr>
             <th>Title</th>
@@ -32,7 +33,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="{ id, title, resume, created_at } in resumes" :key="id">
+          <tr v-for="{ id, title, resume } in store.resumes" :key="id">
             <td>
               <router-link :to="`/resumes/${id}`">{{ title }}</router-link>
             </td>
@@ -53,17 +54,6 @@
 </template>
 
 <style scoped lang="scss">
-.max-lines {
-   overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 4; /* number of lines to show */
-           line-clamp: 4;
-   -webkit-box-orient: vertical;
-}
-.container{
-  margin: 2em;
-}
-
 td {
   .resume {
     white-space: pre-wrap;
@@ -76,5 +66,5 @@ td {
 }
 .cover-link{
     white-space: nowrap;
-  }
+}
 </style>
