@@ -1,4 +1,9 @@
 <script setup>
+  useHead({
+    htmlAttrs: {
+      'data-theme':"dark",
+    }
+  })
   useStream()
 </script>
 

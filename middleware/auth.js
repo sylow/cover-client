@@ -1,12 +1,12 @@
 export default defineNuxtRouteMiddleware((to, _) => {
   // Retrieve the user's authentication status using the useAuth composable
   const userAuth = useAuth()
+  const resumeStore = useResumeStore()
 
   // Check if the user is authenticated
-  if (userAuth.isAuthenticated.value)
-    return
-  else{
-    useState('redirectTo', to.path || '/' )
+  if (!userAuth.isAuthenticated.value)
     return navigateTo('/sessions/sign_in')
-  }
+
+  console.log('User is authenticated')
+  resumeStore.all()
 })

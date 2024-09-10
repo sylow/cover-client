@@ -1,5 +1,5 @@
 import { useStorage } from '@vueuse/core'
-import { type  UserData, type AuthData } from '~/types/all'
+import { type AuthData } from '~/types/all'
 
 export function useAuth() {
   const defaultAuthData: AuthData = {
@@ -14,7 +14,7 @@ export function useAuth() {
     }
   )
 
-  const signIn = (userData: UserData) => {
+  const signIn = (userData: AuthData) => {
     authData.value = { token: userData.token, exp: userData.exp, email: userData.email }
   }
 

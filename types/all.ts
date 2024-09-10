@@ -1,9 +1,5 @@
 // Define the structure of the user data object
-export interface UserData {
-  token: string
-  exp: string
-  email: string
-}
+import {type NuxtError } from '#app'
 
 // Define the structure of the authentication data stored in local storage
 export interface AuthData {
@@ -34,3 +30,14 @@ export interface Cover {
   resume_id?: number
   resume?: string
 }
+
+export interface ApiError extends NuxtError {
+  data?: {
+    error?: string
+  }
+}
+
+export type CallResult = {
+  data?: Ref<AuthData | null>
+  error?: Ref<NuxtError | null>
+};

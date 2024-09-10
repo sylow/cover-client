@@ -1,17 +1,8 @@
-import type { Login, AuthData } from '~/types/all'
+import type { NuxtError } from '#app'
+import type { Login, AuthData, CallResult } from '~/types/all'
 import { useAuth } from '~/composables/useAuth'
 import { useCookie } from '#app'
 
-interface ApiError extends Error {
-  data?: {
-    error?: string;
-  };
-}
-
-type CallResult = {
-  data?: Ref<AuthData | null>;
-  error?: Ref<ApiError | null>;
-};
 
 export function useSession() {
   const auth = useAuth()
@@ -39,7 +30,7 @@ export function useSession() {
       return { error }
     }
 
-    return { error: ref(new Error('No data received')) }
+    return { error: ref(createError({ statusCode: 404, statusMessage: 'Resource not found' })) };
   }
 
   const finalize = ( data: AuthData ) => {

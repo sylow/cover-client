@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { type Resume } from '~/types/all'
-
   definePageMeta({
     middleware: 'auth',
   })
 
-  const { data: resumes } = useAsyncData<{ value: Resume[] }>('resumes', () => useResumes() )
+  const { resumes } = useResumeStore()
+
 </script>
 <template>
   <div class="container">
@@ -22,34 +22,37 @@
       </router-link>
       </div>
     </div>
-    <article class="media" v-for="{ title,  id, content, created_at } in resumes" :key="id" style="margin: 1em 0">
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>{{ title }}</strong> <small>{{ created_at }}</small>
-            <br />
-            <span class="max-lines">{{ content }}</span>
-          </p>
-        </div>
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-reply"></i></span>
-            </a>
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-            </a>
-            <a class="level-item">
-              <span class="icon is-small"><i class="fas fa-heart"></i></span>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </article>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Resume</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="{ id, title, resume, created_at } in resumes" :key="id">
+            <td>
+              <router-link :to="`/resumes/${id}`">{{ title }}</router-link>
+            </td>
+            <td><div class="resume">{{ resume }}</div></td>
+            <td>
+              <nuxt-link :to="`/resumes/${id}/cover`" class="button">
+                <span class="icon">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                </span>
+                <span>New Cover Letter</span>
+              </nuxt-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .max-lines {
    overflow: hidden;
    display: -webkit-box;
@@ -57,4 +60,21 @@
            line-clamp: 4;
    -webkit-box-orient: vertical;
 }
+.container{
+  margin: 2em;
+}
+
+td {
+  .resume {
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* number of lines to show */
+            line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+}
+.cover-link{
+    white-space: nowrap;
+  }
 </style>

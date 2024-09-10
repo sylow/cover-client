@@ -4,27 +4,34 @@
   definePageMeta({
     middleware: 'auth'
   })
+  const { resumes, all } = useResumeStore()
+  onMounted(() => {
+    if (resumes.empty === 0) {
+      all()
+    }
+  })
 
+  const toast = useToast()
   const api = useCoverApi()
   const form = reactive({resume_id: null, project: ''})
   const isValid = computed(() => form.project.length >= 0)
   const isProjectValid = computed(() => form.project.length >= 0)
-  const { data: resumes } = useAsyncData<{ value: Resume[] }>('resumes', () => useResumes() )
 
   const submit = () => {
-    const { data, error, status } = api.create(form)
+    api.create(form)
   }
 </script>
 
 <template>
   <div class="container">
+    <SiteError v-model="error" />
     <form @submit.prevent="submit">
       <div class="field">
         <label class="label">Resume</label>
         <div class="control">
           <div class="select">
             <select v-model="form.resume_id">
-              <option v-for="{ id, title, created_at } in resumes" :key="id" :value="id">{{ title }} ({{  created_at }})</option>
+              <option v-for="resume in resumes" :key="resume.id" :value="resume.id">{{ resume.title }} ({{  resume.created_at }})</option>
             </select>
           </div>
         </div>

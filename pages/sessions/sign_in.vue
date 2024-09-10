@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Login } from '~/types/all'
+  import type { Login, ApiError } from '~/types/all'
   const session = useSession()
   const toast = useToast()
 
@@ -8,7 +8,7 @@
       const { data, error } = await session.signIn(form)
 
       if (error?.value) {
-        const errorMessage = error.value?.data?.error || 'An unexpected error occurred'
+        const errorMessage = (error.value as ApiError)?.data?.error || error.value.message || 'An unexpected error occurred';
         toast.add({ title: 'Sign In Failed', description: errorMessage, color: 'red' })
         return
       }
