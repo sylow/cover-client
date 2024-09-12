@@ -1,20 +1,31 @@
 <script setup lang="ts">
-  import type { Resume } from '~/types/all'
+  import type { Resume, Cover } from '~/types/all'
 
   definePageMeta({
     middleware: 'auth'
   })
+
   const route = useRoute()
   const resumeStore = useResumeStore()
   const toast = useToast()
   const api = useCoverApi()
 
-  const form = reactive({resume_id: Number(useRoute().query.resume_id) || 0, resume: '', project: '', options: {formality: 'formal'}})
-  const isValid = computed(() => form.project.length >= 100 && form.resume_id > 0)
+  const form = reactive<Cover>({ resume_id: Number(route.query.resume_id) || 0, project: '',
+                                 options: {formality: 'formal', words: 250, perspective: '1st person'}})
+  const isValid = computed(() => form.project.length >= 100 && (form.resume_id ?? 0) > 0)
   const isProjectValid = computed(() => form.project.length >= 100)
-
   const selectedResume = computed(() => resumeStore.resumes.find((resume: Resume) => resume.id === form.resume_id))
 
+
+  onMounted(() => {
+    if (form.resume_id  === 0) {
+      form.resume_id = resumeStore.resumes[0]?.id ?? 0
+    }
+  })
+  if (resumeStore.empty) {
+    toast.add({description: 'You need to create a resume first.', color: 'red'})
+    navigateTo('/resumes/new')
+  }
   const submit = () => {
     api.create(form)
   }
@@ -38,8 +49,8 @@
           <div class='help' :class="{'is-danger': !isProjectValid, 'is-success': isProjectValid}">The job/project should be a minimum of 100 characters.</div>
         </div>
 
-        <div class="field" style="display: flex">
-          <aside class="menu" style="flex: 0 0 230px;">
+        <div class="field" style="display: flex;">
+          <aside class="menu" style="flex: 0 0 242px;">
             <strong>Select Resume</strong>
             <ul class="menu-list">
               <li v-for="{ id, title } in resumeStore.resumes" :key="id" :value="id">
@@ -58,35 +69,85 @@
               </li>
             </ul>
           </aside>
-          <div>
+          <div style="width:100%">
+            <div class="help">Choose the resume you want to use for this cover letter on the left.</div>
             <div class="notification is-primary">
                 {{ selectedResume ? selectedResume.resume : ''}}
             </div>
-            <div class='help' :class="{'is-danger': form.resume_id === 0, 'is-success': form.resume_id > 0}">Select one of your resumes.</div>
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">Formal?</label>
-          <div class="control">
-            <label class="radio">
-              <input type="radio" v-model="form.options.formality" value="formal"/> Formal
-            </label>
-
-            <label class="radio">
-              <input type="radio" v-model="form.options.formality" value="informal"/> Informal
-            </label>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label">Tone of the Letter:</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" v-model="form.options.formality" value="formal"/> Formal
+                </label>
+                &nbsp;
+                <label class="radio">
+                  <input type="radio" v-model="form.options.formality" value="informal"/> Informal
+                </label>
+              </div>
+              <p class="help">Formal: professional tone, suitable for business settings. Informal: conversational tone, casual.</p>
+            </div>
           </div>
         </div>
 
 
-        <div class="field">
-          <label class="label"> </label>
-          <div class="control">
-            <button class="button is-link" :disabled="!isValid">Submit</button>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Desired Length of Letter</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select v-model="form.options.words">
+                    <option v-for="item in [250, 400, 600, 800, 1000]" :value="item" :key="item">Around {{ item }} words</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </form>
+
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label">Perspective:</label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" v-model="form.options.perspective" value="1st person"/> 1st Person
+                </label>
+                &nbsp;
+                <label class="radio">
+                  <input type="radio" v-model="form.options.perspective" value="3rd person"/> 3rd Person
+                </label>
+              </div>
+              <p class="help">Formal: professional tone, suitable for business settings. Informal: conversational tone, casual.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <label class="label"></label>
+          </div>
+          <div class="field-body">
+            <div class="field is-narrow">
+              <div class="control">
+                <button class="button is-info" :disabled="!isValid">Generate Cover Letter (1 credit)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
     </div>
   </div>
 </template>
@@ -100,9 +161,11 @@
 }
 
 .notification {
+  width: 100%;
   white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
   overflow-y: auto;      /* Add vertical scrollbars when content overflows */
   height: 250px;
   width: 100%;
+  margin-top: 2px;
 }
 </style>

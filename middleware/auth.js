@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((to, _) => {
+export default defineNuxtRouteMiddleware(async (to, _) => {
   // Retrieve the user's authentication status using the useAuth composable
   const userAuth = useAuth()
   const resumeStore = useResumeStore()
@@ -8,5 +8,5 @@ export default defineNuxtRouteMiddleware((to, _) => {
     return navigateTo('/sessions/sign_in')
 
   if (resumeStore.empty)
-    resumeStore.all()
+    await resumeStore.all()
 })

@@ -27,12 +27,44 @@
 </script>
 
 <template>
-  <div class="container is-small">
-    <div class="notification">
-      <h1 class="title is-1">Sign In</h1>
-      <UserForm @submit="(form) => submit(form)">
-        Sign In
-      </UserForm>
+  <div class="columns">
+
+    <div class="column is-half notification">
+      <div style="width: 50%;">
+        <section class="hero">
+          <div class="hero-body">
+            <p class="title">Welcome Back</p>
+            <p class="subtitle">Please enter your login details below.</p>
+          </div>
+        </section>
+        <UserForm @submit="(form) => submit(form)">
+          <template v-slot:button>
+            Sign In
+          </template>
+          <template v-slot:sign_up>
+            <div class="help">Don't have an account? <a @click="navigateTo('/users/sign_up')">Sign up for free</a></div>
+          </template>
+        </UserForm>
+      </div>
+    </div>
+    <div class="column is-half signin">
+      <img src="/images/sign_in.webp" />
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+  .notification > * {
+    height: 450px;
+    padding: 6em 2em;
+    margin: 0 auto;
+    min-width: 400px;
+  }
+  .hero .hero-body{
+    padding: 0;
+    margin: 0 0 2em 0;
+  }
+  .signin{
+    padding: 0;
+  }
+</style>

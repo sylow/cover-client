@@ -16,7 +16,7 @@
         <p>
           Our user-friendly cover letter generator transforms the challenge of writing into a simple, accessible experience. Enhance your interview prospects, distinguish yourself from the competition, and confidently apply for your dream job—let your professional journey shine through and captivate potential employers!
         </p>
-        <NuxtLink to="/covers/new" class="button is-success is-light">Create Cover Letter</NuxtLink>
+        <NuxtLink to="/covers/new" class="button is-primary">Create Cover Letter</NuxtLink>
       </section>
 
     </div>
@@ -26,7 +26,7 @@
         <p>
           Our intuitive resume builder simplifies the process of crafting a polished, professional resume. Boost your chances of landing interviews, stand out in a crowded job market, and showcase your skills and experience with a beautifully designed resume that leaves a lasting impression on employers!
         </p>
-        <button class="button is-info is-light">Enhance Your Resume</button>
+        <button class="button is-primary">Enhance Your Resume</button>
       </section>
 
     </div>

@@ -16,7 +16,7 @@ export interface Message {
 export interface Resume {
   id: number
   title: string
-  content: string
+  resume: string
   created_at?: string
 }
 
@@ -26,9 +26,14 @@ export interface Login {
 }
 
 export interface Cover {
-  cover: string
-  resume_id?: number
-  resume?: string
+  cover?: string
+  project: string
+  resume_id?: number | null | undefined
+  options: {
+    formality: 'formal' | 'informal'
+    words: number
+    perspective: '1st person' | '3rd person'
+  }
 }
 
 export interface ApiError extends NuxtError {

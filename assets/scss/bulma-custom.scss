@@ -5,6 +5,7 @@ $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
 
 @use "bulma/sass" with (
-  $primary: #7d7e7e,
   $hero-body-padding-tablet: 2rem 2rem 0em 2rem,
+  $menu-item-radius: 0,
+  $notification-radius: 0,
 );

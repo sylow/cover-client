@@ -13,7 +13,7 @@
         </span>
       </div>
     </div>
-
+    <br/>
     <div class="field">
       <label class="label">Password</label>
       <div class="control has-icons-left">
@@ -23,10 +23,24 @@
         </span>
       </div>
     </div>
-    <div class="field buttons">
-      <div class="control">
-        <button class="button"><slot></slot></button>
+
+    <div class="field">
+      <label class="label"></label>
+      <div class="control is-pulled-right">
+        <a>Forgot your password?</a>
       </div>
+    </div>
+    <br/>
+
+    <div class="field buttons">
+        <button class="button is-primary"><slot name="button"></slot></button>
+        <slot name="sign_up"></slot>
     </div>
   </form>
 </template>
+
+<style lang="css" scoped>
+  .button{
+    width: 100%;
+  }
+</style>
