@@ -7,6 +7,6 @@ export default defineNuxtRouteMiddleware((to, _) => {
   if (!userAuth.isAuthenticated.value)
     return navigateTo('/sessions/sign_in')
 
-  console.log('User is authenticated')
-  resumeStore.all()
+  if (resumeStore.empty)
+    resumeStore.all()
 })
