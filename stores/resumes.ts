@@ -1,3 +1,5 @@
+import type { Resume } from '~/types/all'
+
 export const useResumeStore = defineStore('resume', () => {
   const resumes = ref<Resume[]>([])
   const isLoading = ref(false)
