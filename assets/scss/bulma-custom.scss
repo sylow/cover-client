@@ -3,3 +3,8 @@ $pink: #fa7c91;
 $brown: #757763;
 $beige-light: #d0d1cd;
 $beige-lighter: #eff0eb;
+
+@use "bulma/sass" with (
+  $primary: #7d7e7e,
+  $hero-body-padding-tablet: 2rem 2rem 0em 2rem,
+);
