@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import type { Login, ApiError } from '~/types/all'
+  definePageMeta({ layout: 'naked' })
+
   const session = useSession()
   const toast = useToast()
 
@@ -54,17 +56,25 @@
 </template>
 
 <style scoped lang="scss">
-  .notification > * {
-    height: 450px;
-    padding: 6em 2em;
-    margin: 0 auto;
-    min-width: 400px;
+  .notification {
+    padding: 9% 0;
   }
+  .notification > * {
+    margin: 0 auto;
+    min-width: 365px;
+    height: 450px;
+  }
+
   .hero .hero-body{
     padding: 0;
     margin: 0 0 2em 0;
   }
+
   .signin{
     padding: 0;
+  }
+
+  .column {
+    display: flex;
   }
 </style>

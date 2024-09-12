@@ -1,15 +1,17 @@
 <script setup lang="ts">
   import type { Login, ApiError } from '~/types/all'
+  definePageMeta({ layout: 'naked' })
 
   const session = useSession()
   const toast = useToast()
+  const error = ref<ApiError | null>(null)
 
   const submit = async(form: Login) => {
     try {
-      const { data, error } = await session.signUp(form)
+      const { data, error: apiError } = await session.signUp(form)
 
       if (error?.value) {
-        const errorMessage = (error.value as ApiError)?.data?.error || error.value.message || 'An unexpected error occurred';
+        const errorMessage = (apiError.value as ApiError)?.data?.error || apiError.value.message || 'An unexpected error occurred';
         toast.add({ title: 'Sign Up Failed', description: errorMessage, color: 'red' })
         return
       }
@@ -17,8 +19,9 @@
       if (data?.value) {
         toast.add({ title: 'Success', description: 'Signed up successfully', color: 'green' })
         navigateTo('/')
-      } else {
-        toast.add({ title: 'Error', description: 'No data received from server', color: 'red' })
+      } else if (apiError?.value){
+        toast.add({ title: 'Error', description: apiError?.value.data, color: 'red' })
+        error.value = apiError?.value.data.join(', ')
       }
     } catch (e) {
       console.error('Unexpected error during sign up:', e)
@@ -28,12 +31,8 @@
 </script>
 <template>
   <div class="columns">
-    <div class="column is-half signin">
-      <img src="/images/sign_in.webp" />
-    </div>
-
     <div class="column is-half notification">
-      <div style="width: 50%;">
+      <div>
         <section class="hero">
           <div class="hero-body">
             <p class="title">Join Us Today!</p>
@@ -45,26 +44,40 @@
             Sign Up
           </template>
           <template v-slot:sign_up>
-            <div class="help">We will send you an email to confirm your email address</div>
+            <div class="help">Do you have an account? <a @click="navigateTo('/sessions/sign_in')">Sign in</a></div>
           </template>
         </UserForm>
       </div>
     </div>
+    <div class="column is-half signin">
+      <img src="/images/sign_in.webp" />
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .notification > * {
-    height: 450px;
-    padding: 6em 2em;
-    margin: 0 auto;
-    min-width: 400px;
+  .notification {
+    padding: 9% 0;
   }
+  .notification > * {
+    margin: 0 auto;
+    min-width: 365px;
+    height: 450px;
+  }
+
   .hero .hero-body{
     padding: 0;
     margin: 0 0 2em 0;
   }
+
   .signin{
     padding: 0;
   }
+
+  .column {
+    display: flex;
+  }
+
+
 </style>

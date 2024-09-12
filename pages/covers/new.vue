@@ -71,7 +71,7 @@
           </aside>
           <div style="width:100%">
             <div class="help">Choose the resume you want to use for this cover letter on the left.</div>
-            <div class="notification is-primary">
+            <div class="notification is-light">
                 {{ selectedResume ? selectedResume.resume : ''}}
             </div>
           </div>
