@@ -26,7 +26,9 @@ export function useAuth() {
   const email = computed(() => authData.value?.email)
   const exp= computed(() => authData.value?.exp)
 
-  const isAuthenticated = computed(() => authData.value?.token !== '')
+  const isAuthenticated = computed(() => {
+    return (authData.value?.token !== '' && authData.value?.exp !== '' && Date.parse(authData.value?.exp) > new Date().getTime())
+  })
 
   return { token, email, exp, isAuthenticated, signIn, signOut }
 }
