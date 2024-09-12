@@ -21,15 +21,22 @@
       error: error?.value?.data,
     })
     if (status.value == 'success') {
+      resumeStore.all()
       navigateTo('/resumes')
     }
   }
 </script>
 
 <template>
+  <div>
+  <section class="hero">
+    <div class="hero-body">
+      <p class="title">New Resume</p>
+      <p class="subtitle">Craft your resume and take the next step in your career.</p>
+    </div>
+  </section>
   <div class="container">
     <form @submit.prevent="submit">
-      <h1 class="title is-1">New Resume</h1>
       <div class="field">
         <label class="label">Title</label>
         <div class="control">
@@ -51,6 +58,7 @@
         </div>
       </div>
     </form>
+  </div>
   </div>
 </template>
 
