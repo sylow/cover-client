@@ -27,7 +27,7 @@
     <div class="field">
       <label class="label"></label>
       <div class="control is-pulled-right">
-        <a>Forgot your password?</a>
+        <a @click="navigateTo('/users/forgot_password')">Forgot your password?</a>
       </div>
     </div>
     <br/>

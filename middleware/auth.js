@@ -8,5 +8,5 @@ export default defineNuxtRouteMiddleware(async (to, _) => {
     return navigateTo('/sessions/sign_in')
 
   if (resumeStore.empty)
-    await resumeStore.all()
+    await resumeStore.fetch()
 })

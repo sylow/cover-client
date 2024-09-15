@@ -77,4 +77,8 @@
   .column {
     display: flex;
   }
+  .columns{
+    margin-bottom: 0;
+  }
+
 </style>

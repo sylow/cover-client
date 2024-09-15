@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Resume, Cover } from '~/types/all'
+  import type { Resume, CoverForm } from '~/types/all'
 
   definePageMeta({
     middleware: 'auth'
@@ -10,10 +10,10 @@
   const toast = useToast()
   const api = useCoverApi()
 
-  const form = reactive<Cover>({ resume_id: Number(route.query.resume_id) || 0, project: '',
+  const form = reactive<CoverForm>({ resume_id: Number(route.query.resume_id) || 0, job_description: '',
                                  options: {formality: 'formal', words: 250, perspective: '1st person'}})
-  const isValid = computed(() => form.project.length >= 100 && (form.resume_id ?? 0) > 0)
-  const isProjectValid = computed(() => form.project.length >= 100)
+  const isValid = computed(() => form.job_description.length >= 100 && (form.resume_id ?? 0) > 0)
+  const isProjectValid = computed(() => form.job_description.length >= 100)
   const selectedResume = computed(() => resumeStore.resumes.find((resume: Resume) => resume.id === form.resume_id))
 
 
@@ -26,7 +26,8 @@
     toast.add({description: 'You need to create a resume first.', color: 'red'})
     navigateTo('/resumes/new')
   }
-  const submit = () => {
+const submit = () => {
+    console.log('what')
     api.create(form)
   }
 </script>
@@ -44,7 +45,7 @@
         <div class="field">
           <label class="label">Project/Job Posting</label>
           <div class="control">
-            <textarea class="textarea" v-model="form.project"></textarea>
+            <textarea class="textarea" v-model="form.job_description"></textarea>
           </div>
           <div class='help' :class="{'is-danger': !isProjectValid, 'is-success': isProjectValid}">The job/project should be a minimum of 100 characters.</div>
         </div>
@@ -142,7 +143,7 @@
           <div class="field-body">
             <div class="field is-narrow">
               <div class="control">
-                <button class="button is-info" :disabled="!isValid">Generate Cover Letter (1 credit)</button>
+                <button class="button is-info" :disabled="!isValid" @click="submit">Save & Go to Step 2</button>
               </div>
             </div>
           </div>

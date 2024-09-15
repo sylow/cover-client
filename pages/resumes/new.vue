@@ -21,7 +21,7 @@
       error: error?.value?.data,
     })
     if (status.value == 'success') {
-      resumeStore.all()
+      resumeStore.fetch()
       navigateTo('/resumes')
     }
   }
@@ -54,7 +54,7 @@
       <div class="field">
         <label class="label"> </label>
         <div class="control">
-          <button class="button is-link" :disabled="!isTitleValid || !isResumeValid">Save Resume</button>
+          <button class="button is-primary" :disabled="!isTitleValid || !isResumeValid">Save Resume</button>
         </div>
       </div>
     </form>

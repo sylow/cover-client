@@ -5,11 +5,11 @@ export const useResumeStore = defineStore('resume', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
-  const all = async () => {
+  const fetch = async () => {
     if (resumes.value.length === 0) {
       isLoading.value = true
       try {
-        const { data } = await useResumeApi().all()
+        const { data } = await useResumeApi().fetch()
         resumes.value = data.value || []
       } catch (err) {
         error.value = err
@@ -21,5 +21,5 @@ export const useResumeStore = defineStore('resume', () => {
 
   const empty = computed(() => resumes.value.length === 0)
 
-  return { resumes, isLoading, error, all, empty }
+  return { resumes, isLoading, error, fetch, empty }
 })

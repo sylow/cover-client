@@ -2,7 +2,7 @@
 @import 'bulma/bulma';
 
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css";
-.is-small{
+.is-wide{
   width: 30em;
 }
 
@@ -24,4 +24,17 @@
 }
 .container{
  margin: 2em;
+}
+
+.summary {
+  white-space: pre-wrap;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+          line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.nowrap{
+    white-space: nowrap;
 }

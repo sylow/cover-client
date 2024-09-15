@@ -9,9 +9,9 @@ export function useResumeApi() {
     return { data, error, status }
   }
 
-  const all = async() => {
+  const fetch = async() => {
     const { data, error } = await useAsyncData<{ value: Resume[] }>('resumes', async () => $api('/api/v1/resumes') )
     return { data, error }
   }
-  return { all, create }
+  return { fetch, create }
 }

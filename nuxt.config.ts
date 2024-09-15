@@ -19,8 +19,15 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [
+        { src: 'https://js.stripe.com/v3/buy-button.js' },
         { src: '/scripts/menu.js', tagPosition: 'bodyClose' },
       ]
     }
-  }
+  },
+  imports: {
+    // Auto import only from specific directories or turn off autoimport for certain folders
+    dirs: [
+      'composables/**'
+    ]
+  },
 })
