@@ -3,8 +3,9 @@
     middleware: 'auth',
   })
 
-  const store =  useTransactionApi()
-  const { data: transactions } = store.fetch()
+  const api = useTransactionApi()
+  const userStore = useUserStore()
+  const { data: transactions } = api.fetch()
 
 </script>
 <template>
@@ -12,7 +13,7 @@
     <section class="hero">
       <div class="hero-body">
         <p class="title">Manage Your Credits</p>
-        <p class="subtitle">Easily purchase, track, and use your credits.</p>
+        <p class="subtitle">Easily purchase, track, and use your credits. (You have {{  userStore.credits}} credits)</p>
       </div>
     </section>
     <div class="container">

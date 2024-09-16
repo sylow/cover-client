@@ -1,6 +1,10 @@
 // Define the structure of the user data object
 import {type NuxtError } from '#app'
 
+export interface User {
+  email: string
+  credits: number
+}
 // Define the structure of the authentication data stored in local storage
 export interface AuthData {
   token: string

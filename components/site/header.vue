@@ -1,11 +1,5 @@
 <script setup>
   const { isAuthenticated, email, signOut } = useAuth()
-  const cookieToken = useCookie('token')
-  const signOutAndNavigate = async() => {
-    await signOut()
-    cookieToken.value = ''
-    navigateTo('/')
-  }
 </script>
 <template>
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -34,8 +28,8 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-              <div v-if="isAuthenticated">Welcome {{ email }}</div>
-              <NuxtLink class='button is-light' @click="signOutAndNavigate" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
+              <div v-if="isAuthenticated.value">Welcome {{ email }}</div>
+              <NuxtLink class='button is-light' @click="signOut()" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
               <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
               <NuxtLink class='button is-light'  @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>
           </div>

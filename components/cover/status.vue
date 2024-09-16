@@ -2,7 +2,7 @@
   <div>
     <button class="button" @click='emit("pay", id)' v-if="state == 'created'">{{ label }}</button>
     <span v-else>
-      <span class="tag is-light is-medium">{{ label }}</span>
+      <span class="button" disabled>{{ label }}</span>
     </span>
   </div>
 </template>
@@ -15,7 +15,7 @@ import type { CoverState }  from '~/types/all'
 const translations: Record<CoverState, string> = {
   'created': 'Run for 1 credit',
   'paid': 'Payment received',
-  'running': 'Creating ...',
+  'running': 'Writing Cover ...',
   'completed': 'Ready to view',
   'failed': 'Failed'
 };

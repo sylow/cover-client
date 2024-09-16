@@ -34,7 +34,6 @@ import type { CoverState } from '~/types/all';
           <thead>
             <tr>
               <th>Job Description</th>
-              <th></th>
               <th>Resume</th>
               <th>Date</th>
               <th class="has-text-right">
@@ -50,7 +49,6 @@ import type { CoverState } from '~/types/all';
           <tbody>
             <tr v-for="cover in covers" :key="cover.id">
               <td><div class="summary">{{ cover.job_description }}</div></td>
-              <td>{{ cover }}</td>
               <td class="nowrap">{{ cover.resume_title }}</td>
               <td class="nowrap">{{ cover.created_at }}</td>
               <td><CoverStatus v-model:state="cover.aasm_state" v-model:id="cover.id" @pay="(id) => pay(id)"/></td>

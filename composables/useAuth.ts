@@ -18,8 +18,12 @@ export function useAuth() {
     authData.value = { token: userData.token, exp: userData.exp, email: userData.email }
   }
 
-  const signOut = () => {
+  const signOut = async() => {
     authData.value = defaultAuthData
+    const cookieToken = useCookie('token')
+    cookieToken.value = ''
+    navigateTo('/')
+
   }
 
   const token = computed(() => authData.value?.token)
