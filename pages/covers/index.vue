@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { CoverState } from '~/types/all';
 
   definePageMeta({
     middleware: 'auth',
@@ -7,18 +6,20 @@ import type { CoverState } from '~/types/all';
 
   const toast = useToast()
   const api = useCoverApi()
-  const { data: covers, refresh } = api.fetch()
+  const store = useCoverStore()
 
-  const pay = async (id: number) => {
-    const { error } = await api.pay(id)
+  store.fetch()
+
+  const run = async (id: number) => {
+    const { error } = await api.run(id)
+
     if (error.value)
       toast.add({ title: 'Oppps!', description: error?.value?.data, class: 'red' })
     else {
       toast.add({ title: 'Success!', description: 'Cover Letter has been paid.', class: 'green' })
-      refresh()
+      store.fetch()
     }
   }
-
 </script>
 <template>
     <div>
@@ -47,11 +48,11 @@ import type { CoverState } from '~/types/all';
             </tr>
           </thead>
           <tbody>
-            <tr v-for="cover in covers" :key="cover.id">
+            <tr v-for="cover in store.covers" :key="cover.id">
               <td><div class="summary">{{ cover.job_description }}</div></td>
               <td class="nowrap">{{ cover.resume_title }}</td>
               <td class="nowrap">{{ cover.created_at }}</td>
-              <td><CoverStatus v-model:state="cover.aasm_state" v-model:id="cover.id" @pay="(id) => pay(id)"/></td>
+              <td><CoverStatus v-model:state="cover.aasm_state" v-model:id="cover.id" @run="(id) => run(id)"/></td>
             </tr>
           </tbody>
         </table>

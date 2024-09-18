@@ -13,17 +13,17 @@ export function useCoverApi() {
   }
 
   const fetch = () => {
-    return useAsyncData<CoverApi[]>('covers', () => $api('/api/v1/covers'))
+    return useAsyncData<CoverApi[]>('covers.fetch', () => $api('/api/v1/covers', { dedupe: 'defer' }))
   }
 
-  const pay = (id: number) => {
-    return useAsyncData( 'covers.runtIt',
-                  () => $api(`/api/v1/covers/${id}/pay`, {
+  const run = (id: number) => {
+    return useAsyncData( 'covers.run',
+                  () => $api(`/api/v1/covers/${id}/run`, {
                     method: 'POST',
                     dedupe: 'cancel'
                   })
                 )
   }
 
-  return { create, fetch, pay }
+  return { create, fetch, run }
 }

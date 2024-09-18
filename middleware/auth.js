@@ -3,7 +3,7 @@ export default defineNuxtRouteMiddleware(async (to, _) => {
   const userAuth = useAuth()
   const resumeStore = useResumeStore()
   const userStore = useUserStore()
-
+  const coverStore = useCoverStore()
   // Check if the user is authenticated
   if (!userAuth.isAuthenticated.value)
     return navigateTo('/sessions/sign_in')
@@ -12,4 +12,6 @@ export default defineNuxtRouteMiddleware(async (to, _) => {
     await resumeStore.fetch()
   if (userStore.empty)
     await userStore.fetch()
+  if (coverStore.empty)
+    await coverStore.fetch()
 })

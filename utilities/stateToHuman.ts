@@ -4,7 +4,6 @@ type CoverState = 'created' | 'paid' | 'running' | 'completed' | 'failed';
 // Define the translations object with strict typing
 const translations: Record<CoverState, string> = {
   'created': 'Run for 1 credit',
-  'paid': 'Payment received',
   'running': 'Working on it',
   'completed': 'Ready to view',
   'failed': 'Failed'

@@ -3,13 +3,19 @@ import { type Message } from '~/types/all'
 export function useStream<T> (callback: composableFunction<T>) {
   const config = useRuntimeConfig()
   const { token, isAuthenticated } = useAuth()
+  const coverStore = useCoverStore()
   const toast = useToast()
   const closeMethod = ref<Function>()
-
   const eventReceived = (message: Message) => {
     if (message == undefined) return
 
-    toast.add({title: 'New Message', description: message.content})
+    toast.add({ title: 'New Message', description: message.content })
+    console.log(message)
+    console.log(message.type)
+    if (message.type == 'covers.update_all') {
+      console.log('covers.update_all')
+      coverStore.fetch()
+    }
   }
 
   const connect = () => {

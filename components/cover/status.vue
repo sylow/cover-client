@@ -1,37 +1,29 @@
 <template>
   <div>
-    <button class="button" @click='emit("pay", id)' v-if="state == 'created'">{{ label }}</button>
-    <span v-else>
-      <span class="button" disabled>{{ label }}</span>
-    </span>
+    <button class="button" @click='emit("run", id)' v-if="state == 'created'">Run for 1 credit</button>
+    <button class="button" disabled v-if="state == 'running'">Writing Cover...</button>
+    <button class="button" @click='emit("view", id)' v-if="state == 'completed'">View Cover</button>
+    <button class="button is-danger" disabled v-if="state == 'failed'">Failed to write</button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineModel, defineEmits, computed } from 'vue'
-import type { CoverState }  from '~/types/all'
+  import type { CoverState } from '~/types/all';
 
-// Define the translations object with strict typing
-const translations: Record<CoverState, string> = {
-  'created': 'Run for 1 credit',
-  'paid': 'Payment received',
-  'running': 'Writing Cover ...',
-  'completed': 'Ready to view',
-  'failed': 'Failed'
-};
+  const emit = defineEmits<{
+              (event: 'run', id: number): void;
+              (event: 'view', id: number): void;
+              }>();
 
-const state = defineModel<CoverState>('state', {
-  required: true,
-  default: 'created'
-});
+  const state = defineModel<CoverState>('state', {
+    required: true,
+    default: 'created'
+  });
 
-const id = defineModel<number>('id', {
-  required: true,
-  default: 0
-});
-
-const emit = defineEmits(['pay']);
-const label = computed( () => translations[state.value] || state.value )
+  const id = defineModel<number>('id', {
+    required: true,
+    default: 0
+  });
 
 </script>
 

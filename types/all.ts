@@ -48,7 +48,12 @@ export interface CoverApi extends CoverForm {
 }
 
 // Define valid keys for the translations
-export type CoverState = 'created' | 'paid' | 'running' | 'completed' | 'failed';
+export type CoverState = 'created' | 'running' | 'completed' | 'failed';
+export interface Translation {
+  label: string;
+  class: string;
+  disabled: boolean;
+}
 
 
 export interface Transaction {
