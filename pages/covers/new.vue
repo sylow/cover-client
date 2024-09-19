@@ -26,9 +26,15 @@
     toast.add({description: 'You need to create a resume first.', color: 'red'})
     navigateTo('/resumes/new')
   }
-const submit = () => {
-    console.log('what')
-    api.create(form)
+
+  const submit = async() => {
+    const { error } = await api.create(form)
+    if (error.value) {
+      toast.add({description: error.value.data, color: 'red'})
+    } else {
+      toast.add({description: 'Cover Letter created successfully.', color: 'green'})
+      navigateTo(`/covers`)
+    }
   }
 </script>
 
@@ -143,7 +149,7 @@ const submit = () => {
           <div class="field-body">
             <div class="field is-narrow">
               <div class="control">
-                <button class="button is-info" :disabled="!isValid" @click="submit">Save & Go to Step 2</button>
+                <button class="button is-info" :disabled="!isValid">Save & Go to Step 2</button>
               </div>
             </div>
           </div>

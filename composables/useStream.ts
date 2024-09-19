@@ -10,10 +10,7 @@ export function useStream<T> (callback: composableFunction<T>) {
     if (message == undefined) return
 
     toast.add({ title: 'New Message', description: message.content })
-    console.log(message)
-    console.log(message.type)
     if (message.type == 'covers.update_all') {
-      console.log('covers.update_all')
       coverStore.fetch()
     }
   }

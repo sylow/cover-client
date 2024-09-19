@@ -38,3 +38,12 @@
 .nowrap{
     white-space: nowrap;
 }
+
+.scrollable {
+  width: 100%;
+  white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
+  overflow-y: auto;      /* Add vertical scrollbars when content overflows */
+  height: 250px;
+  width: 100%;
+  margin-top: 2px;
+}

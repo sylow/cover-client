@@ -7,7 +7,8 @@ export function useCoverApi() {
     return useAsyncData( 'covers.create',
                   () => $api('/api/v1/covers', {
                     method: 'POST',
-                    body: { cover: form }
+                    body: { cover: form },
+                    dedepu: 'cancel'
                   })
                 )
   }
