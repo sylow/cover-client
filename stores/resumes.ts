@@ -7,8 +7,8 @@ export const useResumeStore = defineStore('resume', () => {
   const isLoading = ref(false)
   const error = ref<Error | null>(null)
 
-  const fetch = async () => {
-    if (resumes.value.length > 0) return
+  const fetch = async (force = false ) => {
+    if (!force && resumes.value.length > 0) return
 
     isLoading.value = true
     error.value = null

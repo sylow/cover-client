@@ -4,12 +4,14 @@ import {type NuxtError } from '#app'
 export interface User {
   email: string
   credits: number
+  id: number
 }
 // Define the structure of the authentication data stored in local storage
 export interface AuthData {
   token: string
   exp: string
   email: string
+  id: number
 }
 
 export interface Message {

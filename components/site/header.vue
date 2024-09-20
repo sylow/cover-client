@@ -19,10 +19,10 @@
     </div>
 
     <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start" v-if="isAuthenticated">
-        <NuxtLink class="navbar-item" to="/resumes">Resumes</NuxtLink>
-        <NuxtLink class="navbar-item" to="/covers">Covers</NuxtLink>
-        <NuxtLink class="navbar-item" to="/credits">Credits</NuxtLink>
+      <div class="navbar-start">
+        <NuxtLink class="navbar-item" to="/resumes" v-if="isAuthenticated">Resumes</NuxtLink>
+        <NuxtLink class="navbar-item" to="/covers" v-if="isAuthenticated">Covers</NuxtLink>
+        <NuxtLink class="navbar-item" to="/prices" prefetch>Prices</NuxtLink>
       </div>
 
       <div class="navbar-end">

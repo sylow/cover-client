@@ -21,7 +21,7 @@
       error: error?.value?.data,
     })
     if (status.value == 'success') {
-      resumeStore.fetch()
+      resumeStore.fetch(true)
       navigateTo('/resumes')
     }
   }

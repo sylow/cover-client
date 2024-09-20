@@ -8,8 +8,6 @@
   const api = useCoverApi()
   const store = useCoverStore()
 
-  store.fetch()
-
   const run = async (id: number) => {
     const { error } = await api.run(id)
 
@@ -22,7 +20,7 @@
   }
 </script>
 <template>
-    <div>
+  <div>
     <section class="hero">
       <div class="hero-body">
         <p class="title">Manage Your Cover Letters</p>

@@ -9,7 +9,9 @@ export const useUserStore = defineStore('user', () => {
   const error = ref<Error | null>(null)
 
   // Methods
-  const fetch = async () => {
+  const fetch = async (force = false) => {
+    if (!force && user.value != null) return
+
     isLoading.value = true
     error.value = null
 
@@ -27,7 +29,8 @@ export const useUserStore = defineStore('user', () => {
   const empty = computed(() => user.value == null)
   const email = computed(() => user.value?.email)
   const credits = computed(() => user.value?.credits)
+  const id = computed(() => user.value?.id)
   
   // Return
-  return { user, isLoading, error, fetch, empty, email, credits }
+  return { user, isLoading, error, id, fetch, empty, email, credits }
 })

@@ -5,7 +5,8 @@ export function useAuth() {
   const defaultAuthData: AuthData = {
     token: '',
     exp: '',
-    email: ''
+    email: '',
+    id: 0
   }
 
   const authData = useCookie<AuthData>('authData',
@@ -15,7 +16,7 @@ export function useAuth() {
   )
 
   const signIn = (userData: AuthData) => {
-    authData.value = { token: userData.token, exp: userData.exp, email: userData.email }
+    authData.value = { token: userData.token, exp: userData.exp, email: userData.email, id: userData.id }
   }
 
   const signOut = async() => {
@@ -28,11 +29,12 @@ export function useAuth() {
 
   const token = computed(() => authData.value?.token)
   const email = computed(() => authData.value?.email)
-  const exp= computed(() => authData.value?.exp)
+  const exp = computed(() => authData.value?.exp)
+  const id = computed(() => authData.value?.id)
 
   const isAuthenticated = computed(() => {
     return (authData.value?.token !== '' && authData.value?.exp !== '' && Date.parse(authData.value?.exp) > new Date().getTime())
   })
 
-  return { token, email, exp, isAuthenticated, signIn, signOut }
+  return { token, email, exp, id, isAuthenticated, signIn, signOut }
 }
