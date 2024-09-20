@@ -32,5 +32,5 @@ export const useUserStore = defineStore('user', () => {
   const id = computed(() => user.value?.id)
   
   // Return
-  return { user, isLoading, error, id, fetch, empty, email, credits }
+  return { user, isLoading, error, fetch, empty, email, credits, id }
 })

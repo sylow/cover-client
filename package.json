@@ -10,18 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^6.1.0",
+    "@fortawesome/free-brands-svg-icons": "^6.1.0",
+    "@fortawesome/free-regular-svg-icons": "^6.1.0",
+    "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@nuxt/scripts": "^0.9.2",
     "@nuxt/ui": "^2.18.4",
     "@pinia/nuxt": "^0.5.4",
     "bulma": "^1.0.2",
     "bulma-divider": "^0.2.0",
     "bulma-extensions": "^6.2.7",
     "bulma-o-steps": "^1.1.0",
-    "nuxt": "^3.13.1",
+    "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
     "vue": "latest"
   },
@@ -30,11 +31,12 @@
     "@vueuse/nuxt": "^11.0.0",
     "eslint": "^9.9.0",
     "eslint-plugin-vue": "^9.27.0",
-    "sass": "^1.77.8",
-    "sass-embedded": "^1.77.8",
+    "sass": "1.60.0",
+    "sass-embedded": "1.60.0",
     "vue-eslint-parser": "^9.4.3"
   },
   "overrides": {
     "vue": "latest"
-  }
+  },
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
 }

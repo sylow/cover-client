@@ -1,7 +1,7 @@
 <script setup>
   useHead({
     htmlAttrs: {
-      'data-theme':"light",
+      // 'data-theme':"light",
     }
   })
   useStream()

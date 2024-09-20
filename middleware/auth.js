@@ -7,7 +7,6 @@ export default defineNuxtRouteMiddleware(async (to, _) => {
   // Check if the user is authenticated
   if (!userAuth.isAuthenticated.value)
     return navigateTo('/sessions/sign_in')
-
   if (resumeStore.empty.value)
     await resumeStore.fetch()
   if (coverStore.empty.value)

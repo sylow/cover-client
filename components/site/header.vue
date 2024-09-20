@@ -1,5 +1,7 @@
 <script setup>
   const { isAuthenticated, email, signOut } = useAuth()
+  const userStore = useUserStore()
+  await userStore.fetch(true)
 </script>
 <template>
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -28,7 +30,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-              <div v-if="isAuthenticated.value">Welcome {{ email }}</div>
+              <div v-if="isAuthenticated" class='tag is-info'>{{ userStore.credits }} credits</div>
               <NuxtLink class='button is-light' @click="signOut()" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
               <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
               <NuxtLink class='button is-light'  @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>

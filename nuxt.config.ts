@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-05',
   devtools: { enabled: true },
-  modules: ['@vueuse/nuxt', '@nuxt/ui', '@pinia/nuxt', '@pinia/nuxt'],
+  modules: ['@vueuse/nuxt', '@nuxt/ui', '@pinia/nuxt', '@pinia/nuxt', '@nuxt/scripts'],
   runtimeConfig: {
     public: {
       environment: process.env.NUXT_PUBLIC_ENVIRONMENT,
@@ -30,4 +30,14 @@ export default defineNuxtConfig({
       'composables/**'
     ]
   },
+  // vite: {
+  //   css: {
+  //     preprocessorOptions: {
+  //       scss: {
+  //         api: 'modern-compiler',
+  //         silenceDeprecations: ['mixed-decls'],
+  //       }
+  //     }
+  //   }
+  // }
 })
