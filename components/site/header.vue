@@ -1,7 +1,8 @@
 <script setup>
   const { isAuthenticated, email, signOut } = useAuth()
   const userStore = useUserStore()
-
+  if (isAuthenticated)
+    userStore.fetch()
 </script>
 <template>
   <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
