@@ -24,15 +24,14 @@
     "bulma-o-steps": "^1.1.0",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
-    "vue": "latest"
+    "vue": "latest",
+    "sass": "1.78.0"
   },
   "devDependencies": {
     "@vueuse/core": "^11.0.0",
     "@vueuse/nuxt": "^11.0.0",
     "eslint": "^9.9.0",
     "eslint-plugin-vue": "^9.27.0",
-    "sass": "1.78.0",
-    "sass-embedded": "1.78.0",
     "vue-eslint-parser": "^9.4.3"
   },
   "overrides": {
