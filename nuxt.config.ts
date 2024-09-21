@@ -30,14 +30,5 @@ export default defineNuxtConfig({
       'composables/**'
     ]
   },
-  // vite: {
-  //   css: {
-  //     preprocessorOptions: {
-  //       scss: {
-  //         api: 'modern-compiler',
-  //         silenceDeprecations: ['mixed-decls'],
-  //       }
-  //     }
-  //   }
-  // }
+
 })

@@ -12,6 +12,7 @@ export function useStream<T> (callback: composableFunction<T>) {
     toast.add({ title: 'New Message', description: message.content })
     if (message.type == 'covers.update_all') {
       coverStore.fetch(true)
+      useUserStore().fetch(true)  // so credits are updated
     }
     if (message.type == 'user.update') {
       useUserStore().fetch(true)

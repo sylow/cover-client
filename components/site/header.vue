@@ -1,10 +1,10 @@
 <script setup>
   const { isAuthenticated, email, signOut } = useAuth()
   const userStore = useUserStore()
-  await userStore.fetch(true)
+
 </script>
 <template>
-  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <NuxtLink class="navbar-item" to="/">
         <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,18 +24,17 @@
       <div class="navbar-start">
         <NuxtLink class="navbar-item" to="/resumes" v-if="isAuthenticated">Resumes</NuxtLink>
         <NuxtLink class="navbar-item" to="/covers" v-if="isAuthenticated">Covers</NuxtLink>
-        <NuxtLink class="navbar-item" to="/prices" prefetch>Prices</NuxtLink>
+        <NuxtLink class="navbar-item" to="/prices">Prices</NuxtLink>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
               <div v-if="isAuthenticated">
-                <NuxtLink to="/prices" class="tags has-addons" prefetch>
+                <NuxtLink to="/prices" class="tags has-addons">
                   <span class="tag is-black">{{ userStore.credits }}</span>
                   <span class="tag is-dark">credits</span>
                 </NuxtLink>
-
               </div>
               <NuxtLink class='button is-light' @click="signOut()" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
               <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>

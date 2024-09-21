@@ -10,7 +10,6 @@ export const useCoverStore = defineStore('cover', () => {
   const fetch = async (force=false) => {
     if (!force && covers.value.length > 0) return
 
-    console.log('fetching covers')
     isLoading.value = true
     error.value = null
 
