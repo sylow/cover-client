@@ -2,7 +2,7 @@
   <div>
     <button class="button" @click='emit("run", id)' v-if="state == 'created'">Run for 1 credit</button>
     <button class="button" disabled v-if="state == 'running'">Writing Cover...</button>
-    <NuxtLink :to="{ name: 'covers-id', params: { id } }" class="button" v-if="state == 'completed'">View Cover</NuxtLink>
+    <NuxtLink :to="{ name: 'covers-id', params: { id } }" class="button is-info" v-if="state == 'completed'">View Cover</NuxtLink>
     <button class="button is-danger" disabled v-if="state == 'failed'">Failed to write</button>
   </div>
 </template>

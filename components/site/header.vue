@@ -30,7 +30,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-              <div v-if="isAuthenticated" class='tag is-info'>{{ userStore.credits }} credits</div>
+              <div v-if="isAuthenticated">
+                <NuxtLink to="/prices" class="tags has-addons" prefetch>
+                  <span class="tag is-black">{{ userStore.credits }}</span>
+                  <span class="tag is-dark">credits</span>
+                </NuxtLink>
+
+              </div>
               <NuxtLink class='button is-light' @click="signOut()" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
               <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
               <NuxtLink class='button is-light'  @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>

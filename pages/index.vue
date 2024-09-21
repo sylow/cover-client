@@ -26,7 +26,7 @@
         <p>
           Our intuitive resume builder simplifies the process of crafting a polished, professional resume. Boost your chances of landing interviews, stand out in a crowded job market, and showcase your skills and experience with a beautifully designed resume that leaves a lasting impression on employers!
         </p>
-        <button class="button is-primary">Enhance Your Resume</button>
+        <button class="button is-primary" disabled>Enhance Your Resume (coming soon)</button>
       </section>
 
     </div>

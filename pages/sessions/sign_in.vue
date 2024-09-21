@@ -17,6 +17,7 @@
 
       if (data?.value) {
         toast.add({ title: 'Success', description: 'Signed in successfully', color: 'green' })
+        useResumeStore().fetch(true)
         navigateTo('/')
       } else {
         toast.add({ title: 'Error', description: 'No data received from server', color: 'red' })
