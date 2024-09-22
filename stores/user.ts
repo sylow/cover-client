@@ -24,6 +24,9 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const reset = () => {
+    user.value = { id: 0, email: '', credits: 0 }
+  }
   // Computed properties
   const empty = computed(() => user.value.email == '')
   const email = computed(() => user.value?.email)

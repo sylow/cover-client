@@ -10,8 +10,8 @@
     try {
       const { data, error: apiError } = await session.signUp(form)
 
-      if (error?.value) {
-        const errorMessage = (apiError.value as ApiError)?.data?.error || apiError.value.message || 'An unexpected error occurred';
+      if (apiError?.value) {
+        const errorMessage = (apiError.value as ApiError)?.data || apiError.value.message || 'An unexpected error occurred';
         toast.add({ title: 'Sign Up Failed', description: errorMessage, color: 'red' })
         return
       }

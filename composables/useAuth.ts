@@ -23,6 +23,7 @@ export function useAuth() {
     authData.value = defaultAuthData
     const cookieToken = useCookie('token')
     cookieToken.value = ''
+    useUserStore().reset()
     navigateTo('/')
 
   }

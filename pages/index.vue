@@ -34,11 +34,15 @@
 </template>
 
 <style scoped lang="scss">
+
 .is-1{
   margin-top: 15px !important;
 }
+.columns{
+  margin-top: 3em;
+}
 .column{
-  margin: 2em;
+  margin: 1em 2em;
   section {
     height: 100%;
     display: flex;
