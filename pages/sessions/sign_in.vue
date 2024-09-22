@@ -4,14 +4,16 @@
 
   const session = useSession()
   const toast = useToast()
-
-  const submit = async(form: Login) => {
+  const disableButton = ref(false)
+const submit = async (form: Login) => {
+    disableButton.value = true
     try {
       const { data, error } = await session.signIn(form)
 
       if (error?.value) {
         const errorMessage = (error.value as ApiError)?.data?.error || error.value.message || 'An unexpected error occurred';
         toast.add({ title: 'Sign In Failed', description: errorMessage, color: 'red' })
+        disableButton.value = false
         return
       }
 
@@ -26,6 +28,8 @@
       console.error('Unexpected error during sign in:', e)
       toast.add({ title: 'Error', description: 'An unexpected error occurred', color: 'red' })
     }
+    disableButton.value = false
+
   }
 </script>
 
@@ -40,7 +44,7 @@
             <p class="subtitle">Please enter your login details below.</p>
           </div>
         </section>
-        <UserForm @submit="(form) => submit(form)">
+        <UserForm @submit="(form) => submit(form)" :disabled="disableButton">
           <template v-slot:button>
             Sign In
           </template>

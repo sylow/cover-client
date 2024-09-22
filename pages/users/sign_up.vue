@@ -5,17 +5,18 @@
   const session = useSession()
   const toast = useToast()
   const error = ref<ApiError | null>(null)
+  const disableButton = ref(false)
 
   const submit = async(form: Login) => {
+    disableButton.value = true
     try {
       const { data, error: apiError } = await session.signUp(form)
-
       if (apiError?.value) {
         const errorMessage = (apiError.value as ApiError)?.data || apiError.value.message || 'An unexpected error occurred';
         toast.add({ title: 'Sign Up Failed', description: errorMessage, color: 'red' })
+        disableButton.value = false
         return
       }
-
       if (data?.value) {
         toast.add({ title: 'Success', description: 'Signed up successfully', color: 'green' })
         navigateTo('/')
@@ -27,6 +28,8 @@
       console.error('Unexpected error during sign up:', e)
       toast.add({ title: 'Error', description: 'An unexpected error occurred', color: 'red' })
     }
+    disableButton.value = false
+
   }
 </script>
 <template>
@@ -35,11 +38,11 @@
       <div>
         <section class="hero">
           <div class="hero-body">
-            <p class="title">Join Us Today!</p>
+            <p class="title">Join Us Today!{{ disableButton }}</p>
             <p class="subtitle">Create an account to get started.</p>
           </div>
         </section>
-        <UserForm @submit="(form) => submit(form)">
+        <UserForm @submit="(form) => submit(form)" :disabled="disableButton">
           <template v-slot:button>
             Sign Up
           </template>

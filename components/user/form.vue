@@ -1,6 +1,7 @@
 <script setup type="ts">
   const form = reactive({email: '', password: ''})
   const emits = defineEmits(['submit'])
+  const props = defineProps(['disabled'])
 </script>
 <template>
   <form @submit.prevent="emits('submit', form)">
@@ -33,7 +34,7 @@
     <br/>
 
     <div class="field buttons">
-        <button class="button is-primary"><slot name="button"></slot></button>
+        <button class="button is-primary" :class="{'is-loading': props.disabled}" :disabled="props.disabled"><slot name="button"></slot></button>
         <slot name="sign_up"></slot>
     </div>
   </form>

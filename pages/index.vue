@@ -38,9 +38,6 @@
 .is-1{
   margin-top: 15px !important;
 }
-.columns{
-  margin-top: 3em;
-}
 .column{
   margin: 1em 2em;
   section {

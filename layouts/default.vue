@@ -1,7 +1,7 @@
 <script setup>
   useHead({
     htmlAttrs: {
-      // 'data-theme':"light",
+      class: 'has-navbar-fixed-top'
     }
   })
   useStream()
