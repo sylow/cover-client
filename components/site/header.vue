@@ -3,6 +3,11 @@
   const userStore = useUserStore()
   if (isAuthenticated)
     userStore.fetch()
+
+  const logout = () => {
+    signOut()
+    navigateTo('/')
+  }
 </script>
 <template>
   <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
@@ -25,19 +30,20 @@
       <div class="navbar-start">
         <NuxtLink class="navbar-item" to="/resumes" v-if="isAuthenticated">Resumes</NuxtLink>
         <NuxtLink class="navbar-item" to="/covers" v-if="isAuthenticated">Covers</NuxtLink>
-        <NuxtLink class="navbar-item" to="/prices">Prices</NuxtLink>
+        <NuxtLink class="navbar-item" to="/help/packages" v-if="isAuthenticated">Packages</NuxtLink>
+        <NuxtLink class="navbar-item" to="/help/prices" v-if="!isAuthenticated">Packages</NuxtLink>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
               <div v-if="isAuthenticated">
-                <NuxtLink to="/prices" class="tags has-addons">
+                <NuxtLink to="/help/packages" class="tags has-addons">
                   <span class="tag is-black">{{ userStore.credits }}</span>
                   <span class="tag is-dark">credits</span>
                 </NuxtLink>
               </div>
-              <NuxtLink class='button is-light' @click="signOut()" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
+              <NuxtLink class='button is-light' @click="logout" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
               <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
               <NuxtLink class='button is-light'  @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>
           </div>
