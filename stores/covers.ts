@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
 import type { CoverApi } from '~/types/all'
 
 export const useCoverStore = defineStore('cover', () => {
@@ -14,8 +12,7 @@ export const useCoverStore = defineStore('cover', () => {
     error.value = null
 
     try {
-      const { data } = await useCoverApi().fetch()
-      covers.value = data.value || []
+      covers.value = await useCoverApi().fetch()
     } catch (err) {
       error.value = err instanceof Error ? err : new Error('An unknown error occurred')
     } finally {
@@ -23,7 +20,10 @@ export const useCoverStore = defineStore('cover', () => {
     }
   }
 
+  const get = computed(() => (id: number) => covers.value.find(cover => cover.id === id))
+
+
   const empty = computed(() => covers.value.length === 0)
 
-  return { covers, isLoading, error, fetch, empty }
+  return { covers, isLoading, error, fetch, empty, get }
 })

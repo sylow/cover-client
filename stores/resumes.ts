@@ -1,21 +1,18 @@
-import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import type { Resume } from '~/types/all'
+import type { ResumeApi } from '~/types/all'
 
 export const useResumeStore = defineStore('resume', () => {
-  const resumes = ref<Resume[]>([])
+  const resumes = ref<ResumeApi[]>([])
   const isLoading = ref(false)
   const error = ref<Error | null>(null)
 
-  const fetch = async (force = false ) => {
+  const fetch = async (force=false) => {
     if (!force && resumes.value.length > 0) return
 
     isLoading.value = true
     error.value = null
 
     try {
-      const { data } = await useResumeApi().fetch()
-      resumes.value = data.value || []
+      resumes.value = await useResumeApi().fetch()
     } catch (err) {
       error.value = err instanceof Error ? err : new Error('An unknown error occurred')
     } finally {
