@@ -27,13 +27,13 @@
     navigateTo('/resumes/new')
   }
 
-  const submit = async() => {
-    const { error } = await api.create(form)
-    if (error.value) {
-      toast.add({description: error.value.data, color: 'red'})
-    } else {
-      toast.add({description: 'Cover Letter created successfully.', color: 'green'})
-      navigateTo(`/covers`)
+  const submit = async () => {
+    try {
+      const cover = await api.create(form)
+      toast.add({ description: 'Cover Letter created successfully.', color: 'green' })
+      navigateTo({ name: 'covers-id', params: { id: cover.id } })
+    } catch (error) {
+      toast.add({ description: (error as Error).message, color: 'red' })
     }
   }
 </script>

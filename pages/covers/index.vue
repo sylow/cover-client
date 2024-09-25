@@ -9,13 +9,13 @@
   const store = useCoverStore()
 
   const run = async (id: number) => {
-    const { error } = await api.run(id)
-
-    if (error.value)
-      toast.add({ title: 'Oppps!', description: error?.value?.data, class: 'red' })
-    else {
+    try
+    {
+      await api.run(id)
       toast.add({ title: 'Success!', description: 'Cover Letter has been paid.', class: 'green' })
       store.fetch()
+    } catch (error) {
+      toast.add({ description: (error as Error).message, color: 'red' })
     }
   }
 </script>
