@@ -19,11 +19,16 @@ export interface Message {
   content: string
 }
 
-export interface Resume {
+export interface ResumeForm {
+  title: string
+  resume: string
+}
+
+export interface ResumeApi {
   id: number
   title: string
   resume: string
-  created_at?: string
+  created_at: string
 }
 
 export interface Login {

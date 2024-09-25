@@ -1,8 +1,17 @@
 <template>
   <div>
-    <button class="button" @click='emit("run", id)' v-if="state == 'created'">Run for 1 credit</button>
+    <button class="button" @click='emit("run", id)' v-if="state == 'created'">
+      <span class="icon">
+        <i class="fa-solid fa-play"></i>
+      </span>
+      <span>Run for 1 credit</span>
+    </button>
     <button class="button" disabled v-if="state == 'running'">Writing Cover...</button>
-    <NuxtLink :to="{ name: 'covers-id', params: { id } }" class="button is-info" v-if="state == 'completed'">View Cover</NuxtLink>
+    <button @click="navigateTo({ name: 'covers-id', params: { id } })" class="button" v-if="state == 'completed'">
+      <span class="icon"><i class="fa-solid fa-envelope-open"></i></span>
+      <span>View Cover</span>
+    </button>
+
     <button class="button is-danger" disabled v-if="state == 'failed'">Failed to write</button>
   </div>
 </template>
