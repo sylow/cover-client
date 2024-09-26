@@ -1,0 +1,16 @@
+@use "bulma/sass/utilities/mixins";
+
+main {
+  margin: 2em;
+  @include mixins.mobile {
+    margin: 0;
+  }
+}
+
+
+.hero .hero-body{
+  @include mixins.mobile {
+    margin: 0;
+    padding: 0;
+  }
+}

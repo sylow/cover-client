@@ -13,7 +13,7 @@
         <p class="subtitle">Easily manage and update your resumes from the list below.</p>
       </div>
     </section>
-    <div class="container">
+    <main>
       <div>
         <SiteLoading v-if="store.isLoading" />
         <table class="table is-fullwidth is-striped" v-if="!store.isLoading">
@@ -49,6 +49,6 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </template>

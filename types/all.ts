@@ -52,6 +52,7 @@ export interface CoverApi extends CoverForm {
   resume_title: string
   resume_content: string
   aasm_state: string
+  created_at: string
 }
 
 // Define valid keys for the translations

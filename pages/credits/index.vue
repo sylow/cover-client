@@ -16,7 +16,7 @@
         <p class="subtitle">Easily purchase, track, and use your credits. (You have {{  userStore.credits}} credits)</p>
       </div>
     </section>
-    <div class="container">
+    <main>
       <div>
         <table class="table is-hoverable is-striped">
           <thead>
@@ -37,6 +37,6 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </template>

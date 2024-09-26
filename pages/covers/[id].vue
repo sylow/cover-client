@@ -25,7 +25,7 @@
         <p class="subtitle">View and manage your cover letter.</p>
       </div>
     </section>
-    <div class="container">
+    <main>
       <div class="tabs ">
         <ul>
           <li :class="{'is-active': tabToShow == 'cover'}" @click="tabToShow ='cover'">
@@ -81,36 +81,36 @@
           {{ cover?.resume_content }}
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
 <style scoped lang="scss">
-.cover-content,
-.content-box {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
+  .cover-content,
+  .content-box {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s ease;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.5s ease;
+  }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 
-.content-box {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+  .content-box {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 </style>

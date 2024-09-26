@@ -1,23 +1,9 @@
 <script setup lang="ts">
-
   definePageMeta({
     middleware: 'auth',
   })
 
-  const toast = useToast()
-  const api = useCoverApi()
   const store = useCoverStore()
-
-  const run = async (id: number) => {
-    try
-    {
-      await api.run(id)
-      toast.add({ title: 'Success!', description: 'Cover Letter has been paid.', class: 'green' })
-      store.fetch()
-    } catch (error) {
-      toast.add({ description: (error as Error).message, color: 'red' })
-    }
-  }
 </script>
 <template>
   <div>
@@ -27,7 +13,7 @@
         <p class="subtitle">Easily manage and update your cover letters.</p>
       </div>
     </section>
-    <div class="container">
+    <main>
       <div>
         <table class="table is-fullwidth is-striped">
           <thead>
@@ -50,11 +36,16 @@
               <td><div class="summary">{{ cover.job_description }}</div></td>
               <td class="nowrap">{{ cover.resume_title }}</td>
               <td class="nowrap">{{ cover.created_at }}</td>
-              <td><CoverStatus v-model:state="cover.aasm_state" v-model:id="cover.id" @run="(id) => run(id)"/></td>
+              <td>
+                <button @click="navigateTo({ name: 'covers-id', params: { id: cover.id } })" class="button">
+                  <span class="icon"><i class="fa-solid fa-envelope-open"></i></span>
+                  <span>View Cover</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </template>

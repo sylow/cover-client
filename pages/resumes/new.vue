@@ -35,7 +35,7 @@
       <p class="subtitle">Craft your resume and take the next step in your career.</p>
     </div>
   </section>
-  <div class="container">
+  <main>
     <form @submit.prevent="submit">
       <div class="field">
         <label class="label">Title</label>
@@ -58,7 +58,7 @@
         </div>
       </div>
     </form>
-  </div>
+  </main>
   </div>
 </template>
 

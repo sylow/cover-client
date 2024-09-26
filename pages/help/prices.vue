@@ -7,8 +7,8 @@
       </div>
     </section>
 
-    <div class="container">
-      <div class="card">
+    <div class="columns">
+      <div class="card column">
         <header class="card-header">
           <p class="card-header-title" style="font-size: 150%">
             Try Out
@@ -28,7 +28,7 @@
 
       </div>
 
-      <div class="card">
+      <div class="card column">
         <header class="card-header">
           <p class="card-header-title" style="font-size: 150%">
             Pro Pack
@@ -50,7 +50,7 @@
       </div>
 
     <!-- Career Booster -->
-      <div class="card">
+      <div class="card column">
         <header class="card-header">
           <p class="card-header-title" style="font-size: 150%">
             Career Booster
@@ -78,16 +78,10 @@
 </script>
 
 <style scoped>
-.container{
-  display: flex;
-  justify-content:center;
-  margin-top: 2em;
-  gap: 2em
+.columns{
+  margin: 2em;
 }
 .card-header-icon {
   margin-left: auto;
-}
-.card{
-  width: 300px;
 }
 </style>

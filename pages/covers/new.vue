@@ -46,7 +46,7 @@
         <p class="subtitle">Generate a personalized cover letter based on your project and resume details.</p>
       </div>
     </section>
-    <div class="container">
+    <main>
       <form @submit.prevent="submit">
         <div class="field">
           <label class="label">Project/Job Posting</label>
@@ -57,27 +57,22 @@
         </div>
 
         <div class="field" style="display: flex;">
-          <aside class="menu" style="flex: 0 0 242px;">
-            <strong>Select Resume</strong>
-            <ul class="menu-list">
-              <li v-for="{ id, title } in resumeStore.resumes" :key="id" :value="id">
-                <a :class="{'is-active': form.resume_id == id}" @click="form.resume_id = id">{{ title }}</a>
-              </li>
-            </ul>
-            <p class="menu-label">New Resume</p>
-            <ul class="menu-list">
-              <li>
-                <router-link to="/resumes/new">
-                  <span class="icon">
-                    <i class="fas fa-plus"></i>
-                  </span>
-                  New Resume
-                </router-link>
-              </li>
-            </ul>
-          </aside>
           <div style="width:100%">
-            <div class="help">Choose the resume you want to use for this cover letter on the left.</div>
+            <div class="dropdown is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click.prevent="">
+                  <span>Your Resume List</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a class="dropdown-item" :class="{ 'is-active': form.resume_id == id }" @click="form.resume_id = id" v-for="{ id, title } in resumeStore.resumes" :key="id" :value="id">{{ title }}</a>
+                </div>
+              </div>
+            </div>
             <div class="notification is-light">
                 {{ selectedResume ? selectedResume.resume : ''}}
             </div>
@@ -154,8 +149,8 @@
             </div>
           </div>
         </div>
-        </form>
-    </div>
+      </form>
+    </main>
   </div>
 </template>
 
