@@ -17,7 +17,7 @@
       </div>
     </section>
     <main>
-      <div>
+      <div class="table-container">
         <table class="table is-hoverable is-striped">
           <thead>
             <tr>

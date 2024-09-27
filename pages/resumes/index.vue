@@ -16,6 +16,7 @@
     <main>
       <div>
         <SiteLoading v-if="store.isLoading" />
+        <div class="table-container">
         <table class="table is-fullwidth is-striped" v-if="!store.isLoading">
           <thead>
             <tr>
@@ -48,6 +49,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </main>
   </div>
