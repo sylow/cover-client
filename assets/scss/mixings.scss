@@ -10,7 +10,7 @@ main {
 
 .hero .hero-body{
   @include mixins.mobile {
-    margin: 0;
+    margin: 10px;
     padding: 0;
   }
 }

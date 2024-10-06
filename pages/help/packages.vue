@@ -6,8 +6,7 @@
         <p class="subtitle">Choose the credit package that fits your needs. Each purchase is a one-time order with no subscription or recurring fees.</p>
       </div>
     </section>
-
-    <section class="container box" ref="stripePricingSection">
+    <main>
       <ClientOnly>
        <ScriptStripePricingTable
           pricing-table-id="prctbl_1Q13EXFTqj5rp0OS96Yu5ncA"
@@ -16,7 +15,7 @@
           :customerEmail="user.email"
         />
         </ClientOnly>
-    </section>
+      </main>
   </div>
 </template>
 
