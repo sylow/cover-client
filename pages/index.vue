@@ -27,7 +27,7 @@
           <p>
             Our intuitive resume builder simplifies the process of crafting a polished, professional resume. Boost your chances of landing interviews, stand out in a crowded job market, and showcase your skills and experience with a beautifully designed resume that leaves a lasting impression on employers!
           </p>
-          <button class="button is-primary" disabled>Enhance Your Resume (coming soon)</button>
+          <NuxtLink to="resumes" class="button is-primary">Enhance Your Resume</NuxtLink>
         </section>
       </div>
     </div>
@@ -47,9 +47,7 @@
               <p>
                 <strong>Eleanor Hayes</strong>, <small>HR Manager</small>
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare
-                magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa
-                sem. Etiam finibus odio quis feugiat facilisis.
+                A great cover letter isn’t just a formality; it’s a chance to see the person behind the resume. I look for individuals who can communicate their value and show they understand the unique needs of our team.
               </p>
             </div>
           </div>

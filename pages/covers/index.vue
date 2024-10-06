@@ -20,13 +20,12 @@
             <tr>
               <th>Job Description</th>
               <th>Resume</th>
-              <th>Date</th>
               <th class="has-text-right">
-                <router-link to="/covers/new" class="button is-primary">
+                <router-link to="/covers/new" class="button is-primary is-small">
                   <span class="icon">
                     <i class="fab fa-plus"></i>
                   </span>
-                  <span>New Cover Letter</span>
+                  <span>New</span>
                 </router-link>
               </th>
             </tr>
@@ -35,11 +34,10 @@
             <tr v-for="cover in store.covers" :key="cover.id">
               <td><div class="summary">{{ cover.job_description }}</div></td>
               <td class="nowrap">{{ cover.resume_title }}</td>
-              <td class="nowrap">{{ cover.created_at }}</td>
-              <td>
-                <button @click="navigateTo({ name: 'covers-id', params: { id: cover.id } })" class="button">
+              <td  class="has-text-right">
+                <button @click="navigateTo({ name: 'covers-id', params: { id: cover.id } })" class="button is-small">
                   <span class="icon"><i class="fa-solid fa-envelope-open"></i></span>
-                  <span>View Cover</span>
+                  <span>View</span>
                 </button>
               </td>
             </tr>

@@ -23,11 +23,11 @@
               <th>Title</th>
               <th>Resume</th>
               <th class="has-text-right">
-                <router-link to="/resumes/new" class="button is-primary">
+                <router-link to="/resumes/new" class="button is-primary is-small">
                   <span class="icon">
                     <i class="fab fa-plus"></i>
                   </span>
-                  <span>New Resume</span>
+                  <span>New</span>
                 </router-link>
               </th>
             </tr>
@@ -38,8 +38,8 @@
                 <router-link :to="`/resumes/${id}`">{{ title }}</router-link>
               </td>
               <td><div class="summary">{{ content }}</div></td>
-              <td>
-                <nuxt-link :to="`/covers/new?resume_id=${id}`" class="button">
+              <td class="has-text-right">
+                <nuxt-link :to="`/covers/new?resume_id=${id}`" class="button is-small">
                   <span class="icon">
                     <i class="fa-solid fa-envelope-open-text"></i>
                   </span>
