@@ -5,7 +5,7 @@
   const session = useSession()
   const toast = useToast()
   const disableButton = ref(false)
-const submit = async (form: Login) => {
+  const submit = async (form: Login) => {
     disableButton.value = true
     try {
       const { data, error } = await session.signIn(form)

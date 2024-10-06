@@ -28,5 +28,17 @@ export function useResumeApi() {
 
   }
 
-  return { fetch, create }
+  const enhance = async (id: number): Promise<void> => {
+    const { error } = await useAsyncData(
+      'covers.run',
+      () => $api(`/api/v1/resumes/${id}/enhance`, {
+        method: 'POST',
+      })
+    )
+
+    if (error.value) {
+      throw error.value
+    }
+  }
+  return { fetch, create, enhance }
 }

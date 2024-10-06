@@ -20,7 +20,9 @@ export const useResumeStore = defineStore('resume', () => {
     }
   }
 
+  const get= computed(() => (id: number) => resumes.value.find(resume => resume.id === id))
+
   const empty = computed(() => resumes.value.length === 0)
 
-  return { resumes, isLoading, error, fetch, empty }
+  return { resumes, isLoading, error, fetch, get, empty }
 })

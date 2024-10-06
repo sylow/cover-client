@@ -1,4 +1,6 @@
 <script setup>
+  const isMenuOpen = ref(false)
+  const target = ref(null)
   const { isAuthenticated, email, signOut } = useAuth()
   const userStore = useUserStore()
   if (isAuthenticated)
@@ -8,9 +10,11 @@
     signOut()
     navigateTo('/')
   }
+
+  onClickOutside(target, event => isMenuOpen.value = false)
 </script>
 <template>
-  <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-light is-fixed-top" role="navigation" aria-label="main navigation" ref="target">
     <div class="navbar-brand">
       <NuxtLink class="navbar-item" to="/">
         <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +22,7 @@
           <path fill-rule="evenodd" clip-rule="evenodd" d="M0 110L10 40L50 0L100 50L70 80L110 120L50 160L0 110Z" fill="#00D1B2"/>
         </svg>
       </NuxtLink>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" @click="isMenuOpen = !isMenuOpen">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -26,7 +30,7 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasic" :class="['navbar-menu', { 'is-active': isMenuOpen }]">
       <div class="navbar-start">
         <NuxtLink class="navbar-item" to="/resumes" v-if="isAuthenticated">Resumes</NuxtLink>
         <NuxtLink class="navbar-item" to="/covers" v-if="isAuthenticated">Covers</NuxtLink>

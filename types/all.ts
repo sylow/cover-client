@@ -19,16 +19,21 @@ export interface Message {
   content: string
 }
 
+export interface EnhancedResume{
+  content: string
+  aasm_state: string
+}
 export interface ResumeForm {
   title: string
-  resume: string
+  content: string
 }
 
 export interface ResumeApi {
   id: number
   title: string
-  resume: string
+  content: string
   created_at: string
+  enhanced_resume: EnhancedResume | null
 }
 
 export interface Login {
@@ -52,6 +57,7 @@ export interface CoverApi extends CoverForm {
   resume_title: string
   resume_content: string
   aasm_state: string
+  preferences: object
   created_at: string
 }
 

@@ -5,14 +5,14 @@
 
   const minimumLenghts = {
     title: 10,
-    resume: 500,
+    content: 500,
   }
 
   const api = useResumeApi()
   const form = reactive({title: '', resume: ''})
 
   const isTitleValid = computed(() => form.title.length >= minimumLenghts.title)
-  const isResumeValid = computed(() => form.resume.length >= minimumLenghts.resume)
+  const isResumeValid = computed(() => form.content.length >= minimumLenghts.content)
 
   const submit = async() => {
     const { error, status } = await api.create(form)
@@ -47,9 +47,9 @@
       <div class="field">
         <label class="label">Your Resume</label>
         <div class="control">
-          <textarea class="textarea" v-model="form.resume"></textarea>
+          <textarea class="textarea" v-model="form.content"></textarea>
         </div>
-        <div class='help' :class="{'is-danger': !isResumeValid, 'is-success': isResumeValid}">Your resume should be a minimum of {{ minimumLenghts.resume }} characters.</div>
+        <div class='help' :class="{'is-danger': !isResumeValid, 'is-success': isResumeValid}">Your resume should be a minimum of {{ minimumLenghts.content }} characters.</div>
       </div>
       <div class="field">
         <label class="label"> </label>

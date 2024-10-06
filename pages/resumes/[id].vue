@@ -4,26 +4,24 @@
   })
 
   const route = useRoute()
-  const coverStore = useCoverStore()
-  const cover = computed(() => coverStore.get(Number(route.params.id)))
+  const resumeStore = useResumeStore()
+  const resume = computed(() => resumeStore.get(Number(route.params.id)))
 
-  const tabToShow = ref('cover')
-  const api = useCoverApi()
+  const enhancedResume = computed(() => resume.value?.enhanced_resume)
+
+  const tabToShow = ref('resume')
+  const api = useResumeApi()
 
   const { copy, copied } = useClipboard()
 
-  const run = async (id: number) => {
-    if (cover.value?.aasm_state != 'created')
-      return
-    await api.run(id)
-  }
-
   const tabs = [
-    { name: 'cover', icon: 'fa-envelope-open-text', title: 'Cover' },
-    { name: 'job', icon: 'fa-user-doctor', title: 'Job Description' },
     { name: 'resume', icon: 'fa-file', title: 'Your Resume' },
-    { name: 'preferences', icon: 'fa-cog', title: 'Preferences' },
+    { name: 'enhance', icon: 'fa-cog', title: 'AI Enhanced Resume' },
   ]
+
+    const run = async (id: number) => {
+    await api.enhance(id)
+  }
 </script>
 
 <template>
@@ -47,12 +45,19 @@
           </li>
         </ul>
       </div>
-      <div v-if="tabToShow=='cover'">
+      <div v-if="tabToShow=='resume'">
+        <div style="white-space: pre-line" class="box">
+          {{ resume?.content }}
+        </div>
+      </div>
+
+      <div v-if="tabToShow=='enhance'">
         <Transition name="fade" mode="out-in">
-          <div v-if="cover?.cover">
-            <div v-if="cover.cover" key="cover-content" class="cover-content">
-              <div style="white-space: pre-line" class="box">
-                <button class="button is-pulled-right is-small" @click="copy(cover?.cover)">
+          <div v-if="enhancedResume">
+            <div style="white-space: pre-line" class="box">
+              <span v-if="enhancedResume?.aasm_state == 'running'">Working on your resume now. It will show here when completed.</span>
+              <div v-if="enhancedResume?.aasm_state == 'completed'">
+                <button class="button is-pulled-right is-small" @click="copy(enhancedResume.content)">
                   <span class="icon">
                     <i  v-if="!copied" class="fa-solid fa-copy"></i>
                     <i v-else class="fa-solid fa-check"></i>
@@ -60,41 +65,21 @@
                   <span v-if="!copied">Copy</span>
                   <span v-else>Copied!</span>
                 </button>
-                {{ cover.cover }}
+                {{ enhancedResume.content }}
               </div>
             </div>
           </div>
           <div v-else>
             <br/>
-            <span v-if="cover?.aasm_state == 'running'">Writing the cover letter now. It will show here when completed.</span>
-            <button class="button" @click="run(cover.id)" v-if="cover?.aasm_state == 'created'">
+            <button class="button" @click="run(resume?.id)" v-if="!enhancedResume">
               <span class="icon">
                 <i class="fa-solid fa-play"></i>
               </span>
-              <span>Click here to generate cover letter (1 credit)</span>
+              <span>Click here to enhance your resume (1 credit)</span>
             </button>
           </div>
         </Transition>
       </div>
-
-      <div v-if="tabToShow=='job'">
-        <div style="white-space: pre-line" class="box">
-          {{ cover?.job_description }}
-        </div>
-      </div>
-
-      <div v-if="tabToShow=='resume'">
-        <div style="white-space: pre-line" class="box">
-          {{ cover?.resume_content }}
-        </div>
-      </div>
-
-      <div v-if="tabToShow=='preferences'">
-        <div style="white-space: pre-line" class="box">
-          {{ cover?.preferences }}
-        </div>
-      </div>
-
     </main>
   </div>
 </template>

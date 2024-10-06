@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Resume, CoverForm } from '~/types/all'
+  import type { ResumeApi, CoverForm } from '~/types/all'
 
   definePageMeta({
     middleware: 'auth'
@@ -14,7 +14,7 @@
                                  options: {formality: 'formal', words: 250, perspective: '1st person'}})
   const isValid = computed(() => form.job_description.length >= 100 && (form.resume_id ?? 0) > 0)
   const isProjectValid = computed(() => form.job_description.length >= 100)
-  const selectedResume = computed(() => resumeStore.resumes.find((resume: Resume) => resume.id === form.resume_id))
+  const selectedResume = computed(() => resumeStore.resumes.find((resume: ResumeApi) => resume.id === form.resume_id))
 
 
   onMounted(() => {
@@ -74,7 +74,7 @@
               </div>
             </div>
             <div class="notification is-light">
-                {{ selectedResume ? selectedResume.resume : ''}}
+                {{ selectedResume ? selectedResume.content : ''}}
             </div>
           </div>
         </div>

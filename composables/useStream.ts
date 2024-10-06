@@ -4,6 +4,7 @@ export function useStream<T> (callback: composableFunction<T>) {
   const config = useRuntimeConfig()
   const { token, isAuthenticated } = useAuth()
   const coverStore = useCoverStore()
+  const resumeStore = useResumeStore()
   const toast = useToast()
   const closeMethod = ref<Function>()
   const eventReceived = (message: Message) => {
@@ -12,6 +13,10 @@ export function useStream<T> (callback: composableFunction<T>) {
     toast.add({ title: 'New Message', description: message.content })
     if (message.type == 'covers.update_all') {
       coverStore.fetch(true)
+      useUserStore().fetch(true)  // so credits are updated
+    }
+    if (message.type == 'resumes.update_all') {
+      resumeStore.fetch(true)
       useUserStore().fetch(true)  // so credits are updated
     }
     if (message.type == 'user.update') {

@@ -33,11 +33,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="{ id, title, resume } in store.resumes" :key="id">
+            <tr v-for="{ id, title, content } in store.resumes" :key="id">
               <td class="nowrap">
                 <router-link :to="`/resumes/${id}`">{{ title }}</router-link>
               </td>
-              <td><div class="summary">{{ resume }}</div></td>
+              <td><div class="summary">{{ content }}</div></td>
               <td>
                 <nuxt-link :to="`/covers/new?resume_id=${id}`" class="button">
                   <span class="icon">
