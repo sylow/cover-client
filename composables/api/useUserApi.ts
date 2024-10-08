@@ -9,7 +9,7 @@ export function useUserApi() {
       throw new Error('Email is invalid')
     }
     const { error } = await useAsyncData( 'users.forgot',
-      () => $api('/api/v1/users/forgot', {
+      () => $api('/api/v1/password_resets', {
         method: 'POST',
         body: { email },
       })
@@ -19,7 +19,7 @@ export function useUserApi() {
       throw error.value
     }
 
-    return 'Sent you a link to reset your password if email is a valid'
+    return 'Sent you a link to retset your password if email is a valid'
   }
 
   return { forgot }
