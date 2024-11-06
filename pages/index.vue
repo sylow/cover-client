@@ -33,13 +33,26 @@
     </div>
 
 
-  <div class="columns" style="margin-top: 4em">
+    <div class="columns" style="margin-top: 0">
       <div class="column">
+        <section>
+          <h2 class="title is-3">
+            Why a Great Cover Letter Matters
+          </h2>
+          <p>
+            Professionals share insights on the importance of a compelling cover letter.
+            It's more than just an introduction—it's a way to highlight your value, align with the role, and make a lasting impression."
+          </p>
+        </section>
+      </div>
+
+      <div class="column">
+        <br/>
         <section>
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
-                <img class="is-rounded" src="/images/people/4.jpeg" />
+                <NuxtImg src="images/people/4.jpeg" class="is-rounded"/>
             </p>
           </figure>
           <div class="media-content">
@@ -57,7 +70,7 @@
 
       <hr/>
 
-      <div class="column">
+      <!-- <div class="column">
         <section class="aligned-buttons">
         <article class="media">
           <figure class="media-left">
@@ -77,13 +90,14 @@
         </article>
         </section>
 
-      </div>
+      </div> -->
       <div class="column">
+        <br/>
         <section class="aligned-buttons">
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
-                <img class="is-rounded" src="/images/people/1.jpeg" />
+              <NuxtImg src="images/people/1.jpeg" class="is-rounded"/>
             </p>
           </figure>
           <div class="media-content">

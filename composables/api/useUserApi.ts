@@ -19,7 +19,7 @@ export function useUserApi() {
       throw error.value
     }
 
-    return 'Sent you a link to retset your password if email is a valid'
+    return 'Sent you a link to reset your password if email is a valid'
   }
 
   return { forgot }

@@ -47,9 +47,9 @@
                   <span class="tag is-dark">credits</span>
                 </NuxtLink>
               </div>
-              <NuxtLink class='button is-light' @click="logout" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
-              <NuxtLink class='button is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
-              <NuxtLink class='button is-light'  @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>
+              <NuxtLink class='button is-light is-primary' @click="navigateTo('/sessions/sign_in')" v-if="!isAuthenticated"><strong>Sign in</strong></NuxtLink>
+              <NuxtLink class='button is-light is-primary' @click="navigateTo('/users/sign_up')" v-if="!isAuthenticated"><strong>Sign up</strong></NuxtLink>
+              <NuxtLink class='button is-light is-primary' @click="logout" v-if="isAuthenticated"><strong>Sign out</strong></NuxtLink>
           </div>
         </div>
       </div>
