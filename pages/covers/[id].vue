@@ -66,7 +66,7 @@
           </div>
           <div v-else>
             <br/>
-            <span v-if="cover?.aasm_state == 'running'">Writing the cover letter now. It will show here when completed.</span>
+            <span v-if="cover?.aasm_state == 'running'">Writing the cover letter... It will appear here in few seconds.</span>
             <button class="button" @click="run(cover.id)" v-if="cover?.aasm_state == 'created'">
               <span class="icon">
                 <i class="fa-solid fa-play"></i>

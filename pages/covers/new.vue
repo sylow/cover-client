@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import type { ResumeApi, CoverForm } from '~/types/all'
+  import { CoverStatus } from '#build/components';
+import type { ResumeApi, CoverForm } from '~/types/all'
 
   definePageMeta({
     middleware: 'auth'
@@ -7,6 +8,7 @@
 
   const route = useRoute()
   const resumeStore = useResumeStore()
+  const coverStore = useCoverStore()
   const toast = useToast()
   const api = useCoverApi()
 
@@ -30,7 +32,8 @@
   const submit = async () => {
     try {
       const cover = await api.create(form)
-      toast.add({ description: 'Cover Letter created successfully.', color: 'green' })
+      coverStore.fetch(true)
+      toast.add({ description: 'We are ready to create your cover letter.', color: 'green' })
       navigateTo({ name: 'covers-id', params: { id: cover.id } })
     } catch (error) {
       toast.add({ description: (error as Error).message, color: 'red' })

@@ -2,7 +2,7 @@
   import type { Login, ApiError } from '~/types/all'
   definePageMeta({ layout: 'naked' })
 
-  const email = ref('')
+  const email = ref('admin4@example.com')
   const toast = useToast()
   const disableButton = ref(false)
   const isSent = ref(false)

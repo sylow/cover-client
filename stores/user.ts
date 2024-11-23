@@ -4,7 +4,7 @@ export const useUserStore = defineStore('user', () => {
   const { $api }  = useNuxtApp()
 
   // State
-  const user = ref<User>({ id: 0, email: '', credits: 0 })
+  const user = ref<User>({ id: 0, email: '', credits: 0, email_confirmed: true })
   const isLoading = ref(false)
   const error = ref<Error | null>(null)
 
@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const reset = () => {
-    user.value = { id: 0, email: '', credits: 0 }
+    user.value = { id: 0, email: '', credits: 0, email_confirmed: true }
   }
   // Computed properties
   const empty = computed(() => user.value.email == '')
@@ -34,5 +34,5 @@ export const useUserStore = defineStore('user', () => {
   const id = computed(() => user.value?.id)
   
   // Return
-  return { user, isLoading, error, fetch, empty, email, credits, id }
+  return { user, isLoading, error, fetch, empty, email, credits, id, reset  }
 })

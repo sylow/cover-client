@@ -55,7 +55,7 @@
         <Transition name="fade" mode="out-in">
           <div v-if="enhancedResume">
             <div style="white-space: pre-line" class="box">
-              <span v-if="enhancedResume?.aasm_state == 'running'">Working on your resume now. It will show here when completed.</span>
+              <span v-if="enhancedResume?.aasm_state == 'running'">Working on your resume... It will appear in few seconds.</span>
               <div v-if="enhancedResume?.aasm_state == 'completed'">
                 <button class="button is-pulled-right is-small" @click="copy(enhancedResume.content)">
                   <span class="icon">

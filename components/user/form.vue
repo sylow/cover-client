@@ -28,7 +28,7 @@
     <div class="field">
       <label class="label"></label>
       <div class="control is-pulled-right">
-        <a @click="navigateTo('/users/forgot_password')">Forgot your password?</a>
+        <NuxtLink :to="{name: 'sessions-forgot_password'}">Forgot your password?</NuxtLink>
       </div>
     </div>
     <br/>

@@ -10,6 +10,7 @@
 <template>
   <div>
     <SiteHeader />
+    <SiteMessage/>
     <NuxtPage />
     <SiteFooter />
     <UNotifications />

@@ -5,6 +5,7 @@ export interface User {
   email: string
   credits: number
   id: number
+  email_confirmed: boolean
 }
 // Define the structure of the authentication data stored in local storage
 export interface AuthData {
